@@ -1,29 +1,28 @@
-"use client";
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuIndicator,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
+import Header from "@/components/Header.tsx";
+import Hero from "@/components/Hero.tsx";
+import DailyRaffleWinners from "@/components/DailyRaffleWinners.tsx";
+import CTA from "@/components/CTA.tsx";
+import TrendingNFTs from "@/components/TrendingNFTs.tsx";
+import LiveActivityBoard from "@/components/LiveActivityBoard.tsx";
+import Footer from "@/components/Footer.tsx";
+import {DefaultPage} from "@/components/DefaultPage.tsx";
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <NavigationMenu>
-            <NavigationMenuList>
-                <NavigationMenuItem>
-                    <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                        <NavigationMenuLink>Link</NavigationMenuLink>
-                    </NavigationMenuContent>
-                </NavigationMenuItem>
-            </NavigationMenuList>
-        </NavigationMenu>
-
-    </main>
-  );
+export function Home(){
+    return (
+        <>
+            <DefaultPage>
+                <Header/>
+            </DefaultPage>
+            <Hero/>
+            <DefaultPage>
+                <DailyRaffleWinners/>
+            </DefaultPage>
+            <CTA/>
+            <DefaultPage>
+                <TrendingNFTs/>
+                <LiveActivityBoard/>
+                <Footer/>
+            </DefaultPage>
+        </>
+    )
 }

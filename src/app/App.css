@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'QuinqueFive';
+  src: url('../../src/assets/fonts/QuinqueFive.ttf');
+}
+
+@font-face {
+  font-family: 'TechnaSans';
+  src: url('../../src/assets/fonts/TechnaSans-Regular.otf');
+}
+
+@font-face {
+  font-family: 'ShareTechMono';
+  src: url('../../src/assets/fonts/ShareTechMono-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'ShareTech';
+  src: url('../../src/assets/fonts/ShareTech-Regular.ttf');
+}
+
+#root {
+  /*max-width: 1280px;*/
+  /*margin: 0 auto;*/
+  /*padding: 2rem;*/
+  /*font-family: QuinqueFive, sans-serif;*/
+  text-align: center;
+  background-color: black;
+}
+
+
+/*table th, table td {*/
+/*  border: 1px solid white  !important;*/
+/*}*/
+
+table {
+  border-spacing: 0;
+  border-collapse: separate  !important;
+  /*border-radius: 20px !important;*/
+  /*border: 1px solid white;*/
+}
+
+
+/*for table header border*/
+
+table thead tr:last-child th:first-child {
+  border-left:  2px solid #60fff5;
+  border-bottom-left-radius: 0.625rem;
+  border-top-left-radius: 0.625rem;
+}
+
+table thead tr:last-child th:last-child {
+  border-right:  2px solid #60fff5;
+  border-bottom-right-radius: 0.625rem;
+  border-top-right-radius: 0.625rem;
+}
+
+table thead tr th {
+  border-top:  2px solid #60fff5;
+  border-bottom:  2px solid #60fff5;
+}
+
+/*table body rounding*/
+table tbody tr:first-child td:first-child {
+  border-top-left-radius: 0.625rem;
+}
+
+table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 0.625rem;
+}
+
+table tbody tr:first-child td:last-child {
+  border-top-right-radius: 0.625rem;
+}
+
+table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 0.625rem;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

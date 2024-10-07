@@ -2,14 +2,14 @@ import SecondaryButton from "@/components/SecondaryButton.tsx";
 import {Avatar} from "@/components/ui/avatar.tsx";
 import iconVerified from "../assets/iconVerified.png"
 import {AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
-import {useNavigate} from "react-router-dom";
+import { useRouter } from 'next/navigation';
+
 
 export default function HamburgerMenu(){
-    const navigate = useNavigate();
+    const router = useRouter();
 
     function nav(page: string){
-        navigate(page);
-        // navigate(0);
+        router.push(page);
     }
     return(
         <div className='flex flex-col gap-2 w-80 border-2 p-3 border-primary absolute right-60 bg-black '>

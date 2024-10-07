@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/table"
 import iconCoin from "../assets/iconCoin.svg"
 import iconSquare from "../assets/iconSquare.svg"
-import "../App.css"
 import {AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import {Avatar} from "@/components/ui/avatar.tsx";
 

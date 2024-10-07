@@ -1,4 +1,4 @@
-import {BorderText} from "@/BorderText.tsx";
+import {BorderText} from "@/components/BorderText.tsx";
 
 export const Countdown = (props: {days: number, hours: number, minutes: number}) => {
     const day0 = Math.floor(props.days / 10)

@@ -1,3 +1,4 @@
+"use client";
 import WireframeButton from "@/components/WireframeButton.tsx";
 import RNLogo from '../assets/RNLogo.png';
 import hamburger from '../assets/hamburgerMenu.png';
