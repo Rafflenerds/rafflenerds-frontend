@@ -2,7 +2,7 @@ import Header from "@/components/Header.tsx";
 import Footer from "@/components/Footer.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 
-export function Leaderboard(){
+export default function Leaderboard(){
     return (
         <DefaultPage>
             <Header/>

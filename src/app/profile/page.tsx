@@ -19,7 +19,7 @@ import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
 
 
-export function Profile(){
+export default function Profile(){
     return (
         <DefaultPage>
             <Header/>

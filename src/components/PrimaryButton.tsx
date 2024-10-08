@@ -1,3 +1,4 @@
+'use client';
 import {Button} from "@/components/ui/button.tsx";
 import {cn} from "@/lib/utils.ts";
 

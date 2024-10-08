@@ -7,7 +7,7 @@ import LiveActivityBoard from "@/components/LiveActivityBoard.tsx";
 import Footer from "@/components/Footer.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 
-export function Home(){
+export default function Home(){
     return (
         <>
             <DefaultPage>

@@ -12,7 +12,7 @@ export default function TrendingNFTs(){
                 <div className='flex gap-3'>
                     <WireframeButton name='Featured' />
                     <WireframeButton name='Past Raffles' />
-                    <PrimaryButton name='Play!' />
+                    <PrimaryButton active={true} name='Play!' />
                 </div>
             </div>
 

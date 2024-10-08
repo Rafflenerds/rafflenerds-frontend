@@ -10,7 +10,7 @@ import iconTelegram from "@/assets/iconTelegram.png";
 import {OfferTable} from "@/components/OfferTable.tsx";
 import Image from "next/image";
 
-export function Raffle(){
+export default function Raffle(){
     return (
         <div className='p-5'>
             <div className='flex flex-col justify-center border border-primary rounded-xl p-10'>

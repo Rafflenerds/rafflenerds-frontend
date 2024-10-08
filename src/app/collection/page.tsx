@@ -18,7 +18,7 @@ import NFTCard from "@/components/NFTCard.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
 
-export function NftCollection(){
+export default function NftCollection(){
     return(
         <DefaultPage>
             <Header/>
@@ -33,7 +33,7 @@ export function NftCollection(){
                         {/*profile*/}
                         <div className='flex '>
                             <Avatar className='size-32 mr-8 rounded'>
-                                <AvatarImage src={nftCollectionPlaceholder}/>
+                                {/*<AvatarImage src={nftCollectionPlaceholder}/>*/}
                                 <AvatarFallback>CN</AvatarFallback>
                             </Avatar>
                             {/*<Image src={iconFlag} alt='Report'/>*/}

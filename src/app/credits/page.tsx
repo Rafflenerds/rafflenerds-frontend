@@ -16,7 +16,7 @@ import {Input} from "@/components/ui/input.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
 
-export function Credits() {
+export default function Credits() {
     return (
         <DefaultPage>
             <Header/>

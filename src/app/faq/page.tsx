@@ -12,7 +12,7 @@ import FaqAccordion from "@/components/FaqAccordion.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 
 
-export function Faq(){
+export default function Faq(){
     return (
         <DefaultPage>
 

@@ -1,3 +1,4 @@
+'use client';
 import {Button} from "@/components/ui/button.tsx";
 import {GradientBorder} from "@/components/GradientBorder.tsx";
 
