@@ -40,7 +40,7 @@ export function Faq(){
                 <FaqAccordion question='Lorem ipsum dolor sit amet' answer='Lorem ipsum dolor sit amet'/>
             </div>
             {/*todo: populate email*/}
-            <p className='text-white font-regular'>Didn't find your answer? Contact our <a href='mailto:' className='text-primary'>customer service</a></p>
+            <p className='text-white font-regular'>Didn&apos;t find your answer? Contact our <a href='mailto:' className='text-primary'>customer service</a></p>
             <Footer/>
         </DefaultPage>
     )

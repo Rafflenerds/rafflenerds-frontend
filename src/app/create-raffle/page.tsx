@@ -14,6 +14,7 @@ import {
 import {Separator} from "@/components/ui/separator.tsx";
 import PrimaryButton from "@/components/PrimaryButton.tsx";
 import {z} from "zod";
+import Image from "next/image";
 
 const createRaffleInput = z.object({
     raffleStartDate: z.date(),
@@ -44,7 +45,7 @@ export const CreateRaffle = () => {
             <div className='flex gap-10 justify-center mb-16'>
                 {/*left*/}
                 <div className='flex flex-col items-center justify-center border border-primary rounded p-8 cursor-pointer' onClick={() => handleAddNFT()}>
-                    <img src={iconPlus} alt='Choose NFT' width='168px'/>
+                    <Image src={iconPlus} alt='Choose NFT' width='168px'/>
                     <p className='text-white font-block mt-10'>Choose NFT for raffle</p>
                 </div>
                 {/*right*/}

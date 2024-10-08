@@ -10,19 +10,20 @@ import PrimaryButton from "@/components/PrimaryButton.tsx";
 import {UserLinks} from "@/components/UserLinks.tsx";
 import {LikeAndShareButtons} from "@/components/LikeAndShareButtons.tsx";
 import {Countdown} from "@/components/Countdown.tsx";
+import Image from "next/image";
 
 export default function PrimaryNFTCard(){
     return(
-        <div className="bg-[url('./assets/raffleBG.svg')] bg-cover bg-no-repeat flex justify-center px-12 mx-10 pb-3 pt-4">
+        <div className="bg-[url('../assets/raffleBG.svg')] bg-cover bg-no-repeat flex justify-center px-12 mx-10 pb-3 pt-4">
             <Card className='w-full'>
                 <CardContent className='px-0 pt-3'>
-                    <img className='w-full py-2' src={placeholderNFT} alt={'NFT'}/>
+                    <Image className='w-full py-2' src={placeholderNFT} alt={'NFT'}/>
                 </CardContent>
                 <CardHeader className='text-left pt-0 pb-2 px-0 text-xl'>
                     <div className='flex justify-between'>
                         <span className='flex'>
                             <p className='text-primary mr-2 mt-[-5px]'>Bored Ape Yacht Club</p>
-                            <img className='w-[15px] mb-2' src={greenCircle} alt='Active'/>
+                            <Image className='w-[15px] mb-2' src={greenCircle} alt='Active'/>
                         </span>
 
                         <p className='text-primary'>FP: 12.9ETH</p>

@@ -14,6 +14,7 @@ import iconCoin from "@/assets/iconCoin.svg";
 import iconDropdown from "@/assets/iconDropdown.svg"
 import {Input} from "@/components/ui/input.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
+import Image from "next/image";
 
 export function Credits() {
     return (
@@ -25,7 +26,7 @@ export function Credits() {
                 {/*box*/}
                 <div className="flex flex-col items-center justify-center border border-primary rounded-xl py-8 px-10 max-w-[45rem] w-full">
                     <div className='flex justify-end w-full'>
-                        <img src={iconCoin} alt='Coin Icon'/>
+                        <Image src={iconCoin} alt='Coin Icon'/>
                         <p className='text-primary font-mono ml-2 text-2xl'>999</p>
                     </div>
 
@@ -43,7 +44,7 @@ export function Credits() {
                         <DropdownMenu>
                             <DropdownMenuTrigger className='text-secondary font-block text-xs flex my-auto'>
                                 USDT
-                                <img className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
+                                <Image className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>Token</DropdownMenuLabel>
@@ -62,7 +63,7 @@ export function Credits() {
                         <DropdownMenu>
                             <DropdownMenuTrigger className='text-primary font-block text-sm flex my-auto'>
                                 Polygon
-                                <img className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
+                                <Image className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>Network</DropdownMenuLabel>

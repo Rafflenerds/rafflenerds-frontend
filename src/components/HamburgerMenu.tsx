@@ -19,7 +19,7 @@ export default function HamburgerMenu(){
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <p className='text-white font-block text-sm my-auto ml-3'>MR. ANONYMON</p>
-                {/*<img src={iconVerified} alt='Verified' className='w-8 h-8 my-auto'/>*/}
+                {/*<Image src={iconVerified} alt='Verified' className='w-8 h-8 my-auto'/>*/}
                 {/*todo: idk why this is here*/}
                 {/*<UserLinks/>*/}
             </div>

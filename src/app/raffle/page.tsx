@@ -8,6 +8,7 @@ import iconX from "@/assets/iconX.png";
 import iconDiscord from "@/assets/iconDiscord.png";
 import iconTelegram from "@/assets/iconTelegram.png";
 import {OfferTable} from "@/components/OfferTable.tsx";
+import Image from "next/image";
 
 export function Raffle(){
     return (
@@ -15,7 +16,7 @@ export function Raffle(){
             <div className='flex flex-col justify-center border border-primary rounded-xl p-10'>
 
                 <div className='flex'>
-                    <img src={nftPlaceholder} alt='nft image' width='400px'/>
+                    <Image src={nftPlaceholder} alt='nft image' className='w-[400px]'/>
                     <div className='ml-8 w-full'>
                         <h2 className='text-2xl font-block text-white text-left mb-4'>Raffle Details</h2>
 
@@ -33,10 +34,10 @@ export function Raffle(){
                                 <h4 className='text-primary font-sans'>FP: 12.9 ETH</h4>
                                 <div className='flex justify-end'>
                                     <a href='#'>
-                                        <img className='mr-2' src={buttonHeart} alt='Favourite Button'/>
+                                        <Image className='mr-2' src={buttonHeart} alt='Favourite Button'/>
                                     </a>
                                     <a href='#'>
-                                        <img src={buttonShare} alt='Share Button'/>
+                                        <Image src={buttonShare} alt='Share Button'/>
                                     </a>
                                 </div>
 
@@ -59,13 +60,13 @@ export function Raffle(){
                                 <div className='flex items-center'>
                                     <p className='text-[#CB5EFE] font-mono'>mranonym619</p>
                                     <a href='#' className='ml-2'>
-                                        <img width='21px' src={iconX} alt='X.com'/>
+                                        <Image className='w-[21px]' src={iconX} alt='X.com'/>
                                     </a>
                                     <a href='#' className='ml-2'>
-                                        <img width='21px' src={iconDiscord} alt='discord.com'/>
+                                        <Image className='w-[21px]' src={iconDiscord} alt='discord.com'/>
                                     </a>
                                     <a href='#' className='ml-2'>
-                                        <img width='21px' src={iconTelegram} alt='telegram.com'/>
+                                        <Image className='w-[21px]' src={iconTelegram} alt='telegram.com'/>
                                     </a>
                                 </div>
                             </div>

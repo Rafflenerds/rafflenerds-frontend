@@ -16,6 +16,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {GradientBorder} from "@/components/GradientBorder.tsx";
 import iconDropdown from "@/assets/iconDropdown.svg";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
+import Image from "next/image";
 
 
 export function Profile(){
@@ -26,7 +27,7 @@ export function Profile(){
             <div className='h-16'></div>
             {/*1px border*/}
             <GradientBorder>
-                <div className="border rounded-2xl pt-60 px-10 pb-5 bg-[url('./assets/profileBGPlaceholder.png')] bg-cover">
+                <div className="border rounded-2xl pt-60 px-10 pb-5 bg-[url('../assets/profileBGPlaceholder.png')] bg-cover">
                     <div className='flex justify-between'>
                         {/*profile*/}
                         <div className='flex '>
@@ -38,7 +39,7 @@ export function Profile(){
                             <div className='my-auto flex flex-col'>
                                 <div className='flex mb-2'>
                                     <h1 className='font-block text-primary text-sm'>@mjbreese178</h1>
-                                    {/*<a href='#'><img className='ml-2 size-5' src={iconFlag} alt='Report User'/></a>*/}
+                                    {/*<a href='#'><Image className='ml-2 size-5' src={iconFlag} alt='Report User'/></a>*/}
                                 </div>
                                 {/*icons*/}
                                 <div className='flex mb-4'>
@@ -128,7 +129,7 @@ export function Profile(){
                 <DropdownMenu>
                     <DropdownMenuTrigger className='border border-primary rounded-xl text-accent font-mono px-5 py-2 flex my-auto'>
                         Sort Entries
-                        <img className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
+                        <Image className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className=''>
                         {/*<DropdownMenuLabel>Sort Entries</DropdownMenuLabel>*/}

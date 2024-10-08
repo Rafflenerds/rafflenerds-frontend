@@ -10,6 +10,7 @@ import iconCoin from "../assets/iconCoin.svg"
 import iconSquare from "../assets/iconSquare.svg"
 import {AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import {Avatar} from "@/components/ui/avatar.tsx";
+import Image from "next/image";
 
 export default function LiveActivityBoard(){
     return(
@@ -29,7 +30,7 @@ export default function LiveActivityBoard(){
                     <TableRow className='font-mono text-secondary text-xl'>
                         <TableCell className='text-left'>
                             {/*todo maybe add back idk what this is tbh*/}
-                            {/*<img src={iconSquare} alt='Coins' className='mr-2 my-auto'/>*/}
+                            {/*<Image src={iconSquare} alt='Coins' className='mr-2 my-auto'/>*/}
                             Bored Ape Yacht Club
                         </TableCell>
                         <TableCell className='flex'>
@@ -41,7 +42,7 @@ export default function LiveActivityBoard(){
                         </TableCell>
                         <TableCell className='text-left'>ENTRY</TableCell>
                         <TableCell className='text-primary flex'>
-                            <img src={iconCoin} alt='Coins' className='mr-2 my-auto'/>
+                            <Image src={iconCoin} alt='Coins' className='mr-2 my-auto'/>
                             0.004
                         </TableCell>
                         <TableCell className='text-left'>Now</TableCell>
