@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'QuinqueFive';
-  src: url('../../src/assets/fonts/QuinqueFive.ttf');
+  src: url('../../public/fonts/QuinqueFive.ttf');
 }
 
 @font-face {
   font-family: 'TechnaSans';
-  src: url('../../src/assets/fonts/TechnaSans-Regular.otf');
+  src: url('../../public/fonts/TechnaSans-Regular.otf');
 }
 
 @font-face {
   font-family: 'ShareTechMono';
-  src: url('../../src/assets/fonts/ShareTechMono-Regular.ttf');
+  src: url('../../public/fonts/ShareTechMono-Regular.ttf');
 }
 
 @font-face {
   font-family: 'ShareTech';
-  src: url('../../src/assets/fonts/ShareTech-Regular.ttf');
+  src: url('../../public/fonts/ShareTech-Regular.ttf');
 }
 
 
