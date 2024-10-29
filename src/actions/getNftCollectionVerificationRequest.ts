@@ -1,9 +1,9 @@
 'use server';
 
+import { zNftCollectionVerificationRequest } from '@/lib/zodSchemas';
 import { z } from 'zod';
 import { authFetch } from './authFetch';
 
-const zNftCollectionVerificationRequest = z.object({ accepted: z.boolean() });
 type NftCollectionVerificationRequest = z.infer<typeof zNftCollectionVerificationRequest>;
 
 export async function getNftCollectionVerificationRequest(id: string): Promise<NftCollectionVerificationRequest> {

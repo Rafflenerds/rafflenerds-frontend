@@ -240,3 +240,5 @@ export const zRaffleWinnerCreate = z.object({
 	raffleId: z.string().uuid(),
 	winnerId: z.string().uuid(),
 });
+
+export const zNftCollectionVerificationRequest = z.object({ accepted: z.boolean() });
