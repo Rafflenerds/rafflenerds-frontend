@@ -214,9 +214,18 @@ export const zRaffleEntry = z.object({
 	id: z.string().uuid(),
 	cost: z.coerce.number().int(),
 	createdAt: z.string().datetime(),
+	tickets: z.coerce.number().int().min(1),
 	// We do not need reference to the raffle id or user address:
 	// Raffle ID can be inferred from the endpoint path
 	// User address can be inferred from the JWT
+});
+
+export const zRaffleEntryCreate = z.object({
+	tickets: z.coerce.number().int().min(1),
+});
+
+export const zRaffleEntryPartialUpdate = z.object({
+	tickets: z.coerce.number().int().min(1),
 });
 
 export const zRaffleWinner = z.object({
