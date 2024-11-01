@@ -1,7 +1,7 @@
 "use client";
 
 import { getRaffle } from '@/actions/getRaffle';
-import { REFETCH_INTERVAL, RETRY_AMOUNT } from '@/lib/constants';
+import { REFETCH_INTERVAL, REQUEST_STALE_TIME, RETRY_AMOUNT } from '@/lib/constants';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetRaffle = (raffleId: string) => {
@@ -11,6 +11,7 @@ export const useGetRaffle = (raffleId: string) => {
 			const raffle = await getRaffle(raffleId);
 			return raffle;
 		},
+		staleTime: REQUEST_STALE_TIME,
 		retry: RETRY_AMOUNT,
 		refetchInterval: REFETCH_INTERVAL,
 	});

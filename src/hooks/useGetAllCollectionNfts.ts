@@ -1,6 +1,7 @@
 "use client";
 
 import { getAllCollectionNfts } from '@/actions/getAllCollectionNfts';
+import { REQUEST_STALE_TIME } from '@/lib/constants';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetAllCollectionNfts = (collectionId: string) => {
@@ -10,6 +11,7 @@ export const useGetAllCollectionNfts = (collectionId: string) => {
 			const nfts = await getAllCollectionNfts(collectionId);
 			return nfts;
 		},
+		staleTime: REQUEST_STALE_TIME,
 	});
 	return { status, data, error };
 };
