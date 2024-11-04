@@ -39,7 +39,6 @@ export default function CreateRaffle() {
                 {/*right*/}
                 <CreateRaffleForm/>
             </div>
-            <PrimaryButton name="Create Raffle" active={true}/>
             <Footer/>
         </div>
     );
