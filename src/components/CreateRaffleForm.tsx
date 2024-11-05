@@ -1,10 +1,4 @@
 import {Input} from "@/components/ui/input.tsx";
-import {
-    DropdownMenu,
-    DropdownMenuContent, DropdownMenuItem,
-    DropdownMenuLabel, DropdownMenuSeparator,
-    DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
 import PrimaryButton from "@/components/PrimaryButton.tsx";
 import {z} from "zod";
@@ -13,7 +7,6 @@ import {ControllerRenderProps, FieldValues, useFieldArray, useForm} from "react-
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -25,7 +18,7 @@ import {format} from "date-fns";
 import {CalendarIcon, Trash2} from "lucide-react";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
 import {Calendar} from "@/components/ui/calendar.tsx";
-import {zRaffleCreate} from "@/lib/zodSchemas.ts";
+import {zNftType, zRaffleCreate} from "@/lib/zodSchemas.ts";
 import {useState} from "react";
 
 type RaffleInput = z.infer<typeof zRaffleCreate>;
@@ -71,178 +64,158 @@ export function CreateRaffleForm(){
 
     const [minTickets, setMinTickets] = useState('0');
     const [discount, setDiscount] = useState('0');
+    const [nftType, setNftType] = useState<z.infer<typeof zNftType>>('erc721');
 
     return (
             <Form {...form} >
                 <form onSubmit={form.handleSubmit(onSubmit, (e)=> console.log(e))} className="w-3/5">
                     <div className='border border-primary rounded p-8 mb-10'>
-
-                                {/*top*/}
-                                <div className='flex items-center justify-between'>
-                                    {/*left*/}
-                                    <div>
-                                        {/*<FormField*/}
-                                        {/*    control={form.control}*/}
-                                        {/*    name="raffleStartDate"*/}
-                                        {/*    render={({ field }) => (*/}
-                                        {/*        <FormItem className="flex flex-col">*/}
-                                        {/*            <FormLabel  className='text-white font-block text-xs'>Raffle Start Date</FormLabel>*/}
-                                        {/*            <FormDatePicker {...field} />*/}
-                                        {/*            <FormMessage />*/}
-                                        {/*        </FormItem>*/}
-                                        {/*    )}*/}
-                                        {/*/>*/}
-
-                                        <FormField
-                                            control={form.control}
-                                            name="nftAmount"
-                                            render={({ field }) => (
-                                                <FormItem className="flex flex-col">
-                                                    <FormLabel  className='text-white font-block text-xs'>NFT amount</FormLabel>
-                                                    <Input placeholder='No Limit' {...field}/>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
-
-                                    {/*right*/}
-                                    <div>
-                                        <FormField
-                                            control={form.control}
-                                            name="endDate"
-                                            render={({ field }) => (
-                                                <FormItem className="flex flex-col">
-                                                    <FormLabel  className='text-white font-block text-xs'>Raffle End Date</FormLabel>
-                                                    <FormDatePicker {...field} />
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-
-                                        <FormField
-                                            control={form.control}
-                                            name="ticketPrice"
-                                            render={({ field }) => (
-                                                <FormItem className="">
-                                                    <FormLabel  className='text-white font-block text-xs'>Ticket Price</FormLabel>
-                                                    <div  className="flex justify-center">
-                                                    <Input placeholder='0' {...field}/>
-
-                                                    {/*<DropdownMenu>*/}
-                                                    {/*    <DropdownMenuTrigger className='text-accent font-mono'>USD</DropdownMenuTrigger>*/}
-                                                    {/*    <DropdownMenuContent>*/}
-                                                    {/*        <DropdownMenuLabel>Currency</DropdownMenuLabel>*/}
-                                                    {/*        <DropdownMenuSeparator/>*/}
-                                                    {/*        <DropdownMenuItem>USD</DropdownMenuItem>*/}
-                                                    {/*        <DropdownMenuItem>ETH</DropdownMenuItem>*/}
-                                                    {/*    </DropdownMenuContent>*/}
-                                                    {/*</DropdownMenu>*/}
-                                                    </div>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-
-                                        {/*<p className='text-white font-block text-xs mt-5'>Ticket Price</p>*/}
-                                        {/*<div className='flex justify-center'>*/}
-                                        {/*    <Input placeholder="0"/>*/}
-
-                                        {/*    <DropdownMenu>*/}
-                                        {/*        <DropdownMenuTrigger className='text-accent font-mono'>USD</DropdownMenuTrigger>*/}
-                                        {/*        <DropdownMenuContent>*/}
-                                        {/*            <DropdownMenuLabel>Currency</DropdownMenuLabel>*/}
-                                        {/*            <DropdownMenuSeparator/>*/}
-                                        {/*            <DropdownMenuItem>USD</DropdownMenuItem>*/}
-                                        {/*            <DropdownMenuItem>ETH</DropdownMenuItem>*/}
-                                        {/*        </DropdownMenuContent>*/}
-                                        {/*    </DropdownMenu>*/}
-                                        {/*</div>*/}
-                                    </div>
-                                </div>
-
-                                {/*middle*/}
-                                <Separator className='bg-primary my-5'/>
-
-                                <h3 className='text-white font-block text-xl mb-6'>Ticket Limits</h3>
-                                <div className='flex items-center justify-between'>
-                                    {/*left*/}
-
-                                    <FormField
-                                        control={form.control}
-                                        name="maxTickets"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-col">
-                                                <FormLabel  className='text-white font-block text-xs'>Max tickets</FormLabel>
-                                                <Input placeholder='No Limit' {...field}/>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    {/*mid*/}
-                                    <FormField
-                                        control={form.control}
-                                        name="maxTicketsPerUser"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-col">
-                                                <FormLabel  className='text-white font-block text-xs'>Min per wallet</FormLabel>
-                                                <Input placeholder='No Limit' {...field}/>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    {/*right*/}
-                                    <FormField
-                                        control={form.control}
-                                        name="maxTicketsPerUser"
-                                        render={({ field }) => (
-                                            <FormItem className="flex flex-col">
-                                                <FormLabel  className='text-white font-block text-xs'>Max per wallet</FormLabel>
-                                                <Input placeholder='No Limit' {...field}/>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                </div>
-
-                                {/*bottom*/}
-                                <Separator className='bg-primary my-5'/>
+                        <h3 className='text-white font-block text-xl mb-6 text-center'>Raffle Details</h3>
+                        {/*top*/}
+                        <div className='flex items-center justify-between'>
 
 
-                                <div className='text-left'>
-                                    <h3 className='text-white font-block text-xl mb-6'>Offers</h3>
-                                    <div className='flex items-center justify-between'>
+                            <FormField
+                                control={form.control}
+                                name="endDate"
+                                render={({field}) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel className='text-white font-block text-xs'>Raffle End Date</FormLabel>
+                                        <FormDatePicker {...field} />
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
 
-                                        <FormField
-                                            control={form.control}
-                                            name={`bulkDiscounts.${discountIndex}.minTickets`}
-                                            render={({ field }) => (
-                                                <FormItem className="flex flex-col">
-                                                    <FormLabel  className='text-white font-block text-xs'>Min Tickets</FormLabel>
-                                                    <Input placeholder='No Limit' {...field} value={minTickets} onChange={(e) => setMinTickets(e.target.value)} />
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
+                            {nftType === 'erc1155' && <FormField
+								control={form.control}
+								name="nftAmount"
+								render={({field}) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel className='text-white font-block text-xs'>NFT
+                                            amount</FormLabel>
+                                        <Input placeholder='No Limit' {...field}/>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+							/>}
 
-                                        <FormField
-                                            control={form.control}
-                                            name={`bulkDiscounts.${discountIndex}.discountPrice`}
-                                            render={({ field }) => (
-                                                <FormItem className="flex flex-col">
-                                                    <FormLabel  className='text-white font-block text-xs'>Discount Price</FormLabel>
-                                                    <Input placeholder='0' {...field} value={discount} onChange={(e)=> setDiscount(e.target.value)}/>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
+                            <FormField
+                                control={form.control}
+                                name="ticketPrice"
+                                render={({field}) => (
+                                    <FormItem className="">
+                                        <FormLabel className='text-white font-block text-xs'>Price Per
+                                            Ticket</FormLabel>
+                                        <div className="flex justify-center">
+                                            <Input placeholder='0' {...field}/>
 
-                                    </div>
-                                    <PrimaryButton onClick={() => addDiscountHandler({minTickets: Number(minTickets), discountPrice: Number(discount)})} name="Add Offer" active={true}/>
-                                </div>
+                                            {/*<DropdownMenu>*/}
+                                            {/*    <DropdownMenuTrigger className='text-accent font-mono'>USD</DropdownMenuTrigger>*/}
+                                            {/*    <DropdownMenuContent>*/}
+                                            {/*        <DropdownMenuLabel>Currency</DropdownMenuLabel>*/}
+                                            {/*        <DropdownMenuSeparator/>*/}
+                                            {/*        <DropdownMenuItem>USD</DropdownMenuItem>*/}
+                                            {/*        <DropdownMenuItem>ETH</DropdownMenuItem>*/}
+                                            {/*    </DropdownMenuContent>*/}
+                                            {/*</DropdownMenu>*/}
+                                        </div>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+
+                        </div>
+
+                        {/*middle*/}
+                        <Separator className='bg-primary my-5'/>
+
+                        <h3 className='text-white font-block text-xl mb-6 text-center'>Ticket Limits</h3>
+                        <div className='flex items-center justify-between'>
+                            {/*left*/}
+
+                            <FormField
+                                control={form.control}
+                                name="maxTickets"
+                                render={({field}) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel className='text-white font-block text-xs'>Max tickets</FormLabel>
+                                        <Input placeholder='No Limit' {...field}/>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+
+                            {/*mid*/}
+                            <FormField
+                                control={form.control}
+                                name="maxTicketsPerUser"
+                                render={({field}) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel className='text-white font-block text-xs'>Min per wallet</FormLabel>
+                                        <Input placeholder='No Limit' {...field}/>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+
+                            {/*right*/}
+                            <FormField
+                                control={form.control}
+                                name="maxTicketsPerUser"
+                                render={({field}) => (
+                                    <FormItem className="flex flex-col">
+                                        <FormLabel className='text-white font-block text-xs'>Max per wallet</FormLabel>
+                                        <Input placeholder='No Limit' {...field}/>
+                                        <FormMessage/>
+                                    </FormItem>
+                                )}
+                            />
+
+                        </div>
+
+                        {/*bottom*/}
+                        <Separator className='bg-primary my-5'/>
+
+
+                        <div className='text-left'>
+                            <h3 className='text-white font-block text-xl mb-6 text-center'>Offers</h3>
+                            <div className='flex items-center justify-between'>
+
+                                <FormField
+                                    control={form.control}
+                                    name={`bulkDiscounts.${discountIndex}.minTickets`}
+                                    render={({field}) => (
+                                        <FormItem className="flex flex-col">
+                                            <FormLabel className='text-white font-block text-xs'>Min Tickets</FormLabel>
+                                            <Input placeholder='No Limit' {...field} value={minTickets}
+                                                   onChange={(e) => setMinTickets(e.target.value)}/>
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <FormField
+                                    control={form.control}
+                                    name={`bulkDiscounts.${discountIndex}.discountPrice`}
+                                    render={({field}) => (
+                                        <FormItem className="flex flex-col">
+                                            <FormLabel className='text-white font-block text-xs'>Discount
+                                                Price</FormLabel>
+                                            <Input placeholder='0' {...field} value={discount}
+                                                   onChange={(e) => setDiscount(e.target.value)}/>
+                                            <FormMessage/>
+                                        </FormItem>
+                                    )}
+                                />
+
+                                <PrimaryButton onClick={() => addDiscountHandler({
+                                    minTickets: Number(minTickets),
+                                    discountPrice: Number(discount)
+                                })} name="Add Offer" active={true}/>
+                            </div>
+
+                        </div>
 
 
                     </div>
