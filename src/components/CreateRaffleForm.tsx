@@ -20,12 +20,16 @@ import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.t
 import {Calendar} from "@/components/ui/calendar.tsx";
 import {zNftType, zRaffleCreate} from "@/lib/zodSchemas.ts";
 import {useState} from "react";
+import {createRaffle} from "@/actions/createRaffle.ts";
+import catchError from "@/utils/catchError.ts";
+import {useToast} from "@/components/ui/use-toast.ts";
 
 type RaffleInput = z.infer<typeof zRaffleCreate>;
 export function CreateRaffleForm(){
 
 
-    const [discountIndex, setDiscountIndex] = useState(0)
+    const [discountIndex, setDiscountIndex] = useState(0);
+    const { toast } = useToast();
 
     const form = useForm<RaffleInput>({
         resolver: zodResolver(zRaffleCreate),
@@ -36,20 +40,27 @@ export function CreateRaffleForm(){
     })
 
     function onSubmit(values: RaffleInput) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
-    }
+        createRaffle(values).then((res) => {
+            toast({
+                title: "✅ Raffle Created",
+                description: "Raffle Created Successfully",
+            })
+            }
+        ).catch(() => {
+            toast({
+                title: "❌ Error",
+                description: "Raffle Creation Failed",
+                variant: 'destructive',
+        })
+    })}
 
     function addDiscountHandler({ minTickets, discountPrice }: { minTickets: number, discountPrice: number }) {
 
         if (minTickets === 0 || discountPrice === 0) {
-            console.log(minTickets, discountPrice)
             return;
         }
 
         if (!minTickets || !discountPrice) {
-            console.log(minTickets, discountPrice)
             return;
         }
 

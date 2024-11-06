@@ -1,12 +1,13 @@
 'use server';
 
-import { zRaffle } from '@/lib/zodSchemas';
+import {zRaffle, zRaffleCreate} from '@/lib/zodSchemas';
 import { z } from 'zod';
 import { authFetch } from './authFetch';
 
 type Raffle = z.infer<typeof zRaffle>;
+type RaffleInput = z.infer<typeof zRaffleCreate>;
 
-export async function creatRaffle(raffle: Raffle): Promise<Raffle> {
+export async function createRaffle(raffle: RaffleInput): Promise<Raffle> {
 	const response = await authFetch('/raffles', {
 		method: 'POST',
 		body: JSON.stringify(raffle),
