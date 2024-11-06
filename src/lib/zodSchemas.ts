@@ -102,6 +102,8 @@ export const zCreditTransaction = z.object({
 /***************************************/
 /************* NFT Schemas *************/
 /***************************************/
+export const zNftType = z.enum(['erc721', 'erc1155']);
+
 export const zNftCollection = z.object({
     id: z.string().uuid(),
     bannerUrl: z.string().url().optional(),
@@ -111,7 +113,7 @@ export const zNftCollection = z.object({
     logoUrl: z.string().url().optional(),
     name: z.string().optional(),
     slug: z.string().optional(),
-    type: z.enum(['erc721', 'erc1155']),
+    type: zNftType,
     verified: z.boolean(),
 });
 
