@@ -32,7 +32,7 @@ export default function CreateRaffle() {
 
             <div className='flex gap-10 justify-center mb-16'>
                 {/*left*/}
-                <div className='flex flex-col items-center justify-center border border-primary rounded p-8 cursor-pointer' onClick={() => handleAddNFT()}>
+                <div className='flex flex-col items-center justify-center border border-primary rounded p-8 cursor-pointer max-h-[25rem]' onClick={() => handleAddNFT()}>
                     <Image src={iconPlus} alt='Choose NFT' width={168}/>
                     <p className='text-white font-block mt-10'>Choose NFT for raffle</p>
                 </div>
