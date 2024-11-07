@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type {Metadata, Viewport} from 'next';
 import { Inter } from 'next/font/google';
 import './App.css';
 import './globals.css';
@@ -12,6 +12,8 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
     title: 'Rafflenerds',
     description: 'Rafflenerds is a Web3 decentralised raffle platform for raffling NFTs and other digital assets.',
+    keywords: 'raffle, rafflenerds, nft, web3, blockchain',
+    robots: 'index, follow',
 };
 
 export default function RootLayout({ children }: Readonly<{
@@ -26,4 +28,9 @@ export default function RootLayout({ children }: Readonly<{
             </body>
         </html>
     );
+}
+
+export const viewport: Viewport = {
+    themeColor: 'black',
+    colorScheme: 'dark',
 }
