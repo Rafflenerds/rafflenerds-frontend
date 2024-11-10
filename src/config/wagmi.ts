@@ -6,9 +6,8 @@ import { arbitrum, mainnet } from '@reown/appkit/networks';
 
 // Get projectId from https://cloud.reown.com
 export const projectId = process.env.REOWN_PROJECT_ID;
-
 if (!projectId) {
-    throw new Error('Project ID is not defined');
+    throw new Error('REOWN_PROJECT_ID is not defined');
 }
 
 export const networks = [mainnet, arbitrum];

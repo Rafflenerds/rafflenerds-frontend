@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
         },
+        // todo: update this to the actual sitemap
         sitemap: 'https://acme.com/sitemap.xml',
     }
 }
