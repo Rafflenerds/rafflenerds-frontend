@@ -1,93 +1,90 @@
 import { getAddressFromMessage, getChainIdFromMessage, verifySignature } from '@reown/appkit-siwe';
-import type {
-	GetServerSidePropsContext,
-	NextApiRequest,
-	NextApiResponse,
-} from "next";
-import type { AuthOptions, NextAuthOptions } from "next-auth";
-import { getServerSession } from "next-auth";
+import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 'next';
+import type { AuthOptions, NextAuthOptions } from 'next-auth';
+import { getServerSession } from 'next-auth';
 import credentialsProvider from 'next-auth/providers/credentials';
 
 const nextAuthSecret = process.env.NEXTAUTH_SECRET;
-const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
+if (!nextAuthSecret) {
+    throw new Error('NEXTAUTH_SECRET is not set');
+}
+const projectId = process.env.NEXT_PUBLIC_REOWN_PROJECT_ID;
 if (!projectId) {
-	throw new Error('NEXT_PUBLIC_PROJECT_ID is not set');
+    throw new Error('NEXT_PUBLIC_REOWN_PROJECT_ID is not set');
 }
 
 // You'll need to import and pass this
 // to `NextAuth` in `app/api/auth/[...nextauth]/route.ts`
 const providers = [
-	credentialsProvider({
-		name: 'Ethereum',
-		credentials: {
-			message: {
-				label: 'Message',
-				type: 'text',
-				placeholder: '0x0'
-			},
-			signature: {
-				label: 'Signature',
-				type: 'text',
-				placeholder: '0x0'
-			}
-		},
-		async authorize(credentials) {
-			try {
-				if (!credentials?.message) {
-					throw new Error('SiweMessage is undefined');
-				}
-				const { message, signature } = credentials;
-				const address = getAddressFromMessage(message);
-				const chainId = getChainIdFromMessage(message);
+    credentialsProvider({
+        name: 'Ethereum',
+        credentials: {
+            message: {
+                label: 'Message',
+                type: 'text',
+                placeholder: '0x0',
+            },
+            signature: {
+                label: 'Signature',
+                type: 'text',
+                placeholder: '0x0',
+            },
+        },
+        async authorize(credentials) {
+            if (!credentials?.message) {
+                console.error('SiweMessage is undefined');
+                return null;
+            }
+            const { message, signature } = credentials;
+            const address = getAddressFromMessage(message);
+            const chainId = getChainIdFromMessage(message);
 
-				const isValid = await verifySignature({ address, message, signature, chainId, projectId });
+            const isValid = await verifySignature({ address, message, signature, chainId, projectId });
 
-				if (isValid) {
-					return {
-						id: `${chainId}:${address}`
-					};
-				}
+            if (isValid) {
+                return {
+                    id: `${chainId}:${address}`,
+                };
+            }
 
-				return null;
-			} catch (e) {
-				return null;
-			}
-		}
-	})
+            console.error('Invalid Signature');
+            return null;
+        },
+    }),
 ];
 
 export const nextAuthConfig: AuthOptions = {
-	secret: nextAuthSecret,
-	providers,
-	session: {
-		strategy: 'jwt'
-	},
-	callbacks: {
-		session({ session, token }) {
-			if (!token.sub) {
-				return session;
-			}
+    secret: nextAuthSecret,
+    providers,
+    session: {
+        strategy: 'jwt',
+    },
+    callbacks: {
+        session({ session, token }) {
+            if (!token.sub) {
+                return session;
+            }
 
-			const [, chainId, address] = token.sub.split(':');
-			if (chainId && address) {
-				session.address = address;
-				session.chainId = parseInt(chainId, 10);
-			}
+            const [, chainId, address] = token.sub.split(':');
+            if (chainId && address) {
+                session.address = address;
+                session.chainId = parseInt(chainId, 10);
+            }
 
-			return session;
-		}
-	},
-	pages: {
-		signIn: '/login',
-	}
+            return session;
+        },
+    },
+    pages: {
+        signIn: '/login',
+    },
 } satisfies NextAuthOptions;
 
 // Use it in server contexts
 export async function auth(
-	...args:
-		| [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
-		| [NextApiRequest, NextApiResponse]
-		| []
+    ...args:
+        | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
+        | [NextApiRequest, NextApiResponse]
+        | []
 ) {
-	return await getServerSession(...args, nextAuthConfig);
+    return await getServerSession(...args, nextAuthConfig);
 }
