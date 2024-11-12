@@ -13,36 +13,49 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import useMediaQuery from "@/components/hooks/use-media-query.ts";
+
+
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
-  return (
-    <>
-      <header className='flex justify-between pt-[69px]'>
-          <div className='flex space-x-[20px]'>
-              <a href='/public'><Image className='w-[150px] h-auto select-none' src={RNLogo} alt={'RaffleNerds Logo'}/></a>
-              <WireframeButton className="hidden lg:block" name="Play!"/>
-          </div>
-          <div className='flex space-x-[15px]' >
-              <a onClick={() => setMenuOpen(!menuOpen)}><Image className='w-[30px] h-[30px] cursor-pointer' src={hamburger} alt={'Hamburger Menu'}/></a>
-          </div>
-      </header>
-
-        {menuOpen && <HamburgerMenu />}
+    const isMobile = useMediaQuery('(max-width: 600px)');
 
 
-        <Sheet>
-            <SheetTrigger>Open</SheetTrigger>
-            <SheetContent>
-                <SheetHeader>
-                    <SheetTitle>Are you absolutely sure?</SheetTitle>
-                    <SheetDescription>
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
-                    </SheetDescription>
-                </SheetHeader>
-            </SheetContent>
-        </Sheet>
-    </>
-  )
+    const header = <header className='flex'>
+        <div className='flex space-x-[20px]'>
+            <a href='/public'><Image className='w-[150px] h-auto select-none' src={RNLogo} alt={'RaffleNerds Logo'}/></a>
+            <WireframeButton className="hidden lg:block" name="Play!"/>
+        </div>
+
+    </header>
+
+    if (isMobile) {
+        return (
+            <div className="flex justify-between pt-[69px]">
+                {header}
+                <div>
+                <Sheet>
+                    <SheetTrigger className="h-fit"><Image className='w-[30px]' src={hamburger}
+                                         alt={'Hamburger Menu'}/></SheetTrigger>
+                    <SheetContent>
+
+                    </SheetContent>
+                </Sheet>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <div className="flex justify-between pt-[69px]">
+            {header}
+            <div className='flex space-x-[15px]'>
+                <a onClick={() => setMenuOpen(!menuOpen)}><Image className='w-[30px] h-fit cursor-pointer'
+                                                                 src={hamburger}
+                                                                 alt={'Hamburger Menu'}/></a>
+            </div>
+            {menuOpen && <HamburgerMenu/>}
+        </div>
+    )
 }

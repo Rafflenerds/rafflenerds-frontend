@@ -6,6 +6,7 @@ import React from 'react';
 import ContextProvider from '@/context';
 import { headers } from 'next/headers';
 import {Toaster} from "@/components/ui/toaster.tsx";
+import {cn} from "@/lib/utils.ts";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,8 +22,8 @@ export default function RootLayout({ children }: Readonly<{
 }>) {
     const cookies = headers().get('cookie');
     return (
-        <html lang="en">
-            <body className={inter.className}>
+        <html lang="en" className="">
+            <body className={cn(inter.className, "!w-full")}>
                 <ContextProvider cookies={cookies}>{children}</ContextProvider>
             <Toaster/>
             </body>

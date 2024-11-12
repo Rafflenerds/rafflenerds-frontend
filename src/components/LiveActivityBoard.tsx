@@ -16,7 +16,7 @@ export default function LiveActivityBoard(){
     return(
         <>
             <h2 className='text-3xl text-white font-block mt-60 mb-8'>Live Activity Board</h2>
-            <Table>
+            <Table className="">
                 <TableHeader className='font-block'>
                     <TableRow>
                         <TableHead className='text-secondary'>Raffle</TableHead>
@@ -33,17 +33,21 @@ export default function LiveActivityBoard(){
                             {/*<Image src={iconSquare} alt='Coins' className='mr-2 my-auto'/>*/}
                             Bored Ape Yacht Club
                         </TableCell>
-                        <TableCell className='flex'>
-                            <Avatar className='size-8 mr-3 my-auto'>
-                                <AvatarImage src="https://github.com/shadcn.png" />
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar>
-                            Enzoetixx
+                        <TableCell className='align-middle'>
+                            <div className="flex items-center">
+                                <Avatar className='size-8 mr-3'>
+                                    <AvatarImage src="https://github.com/shadcn.png" />
+                                    <AvatarFallback>CN</AvatarFallback>
+                                </Avatar>
+                                Enzoetixx
+                            </div>
                         </TableCell>
                         <TableCell className='text-left'>ENTRY</TableCell>
-                        <TableCell className='text-primary flex'>
-                            <Image src={iconCoin} alt='Coins' className='mr-2 my-auto'/>
-                            0.004
+                        <TableCell className='text-primary align-middle'>
+                            <div className="flex items-center">
+                                <Image src={iconCoin} alt='Coins' className='mr-2'/>
+                                0.004
+                            </div>
                         </TableCell>
                         <TableCell className='text-left'>Now</TableCell>
                     </TableRow>

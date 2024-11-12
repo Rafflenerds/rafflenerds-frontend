@@ -4,7 +4,7 @@ type Props = {
 
 export const DefaultPage = ({ children } : Props) => {
     return (
-        <div className='px-40'>
+        <div className='px-5 lg:px-40'>
             {children}
         </div>
     );

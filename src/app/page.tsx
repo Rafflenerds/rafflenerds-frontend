@@ -9,7 +9,7 @@ import {DefaultPage} from "@/components/DefaultPage.tsx";
 
 export default function Home(){
     return (
-        <>
+        <div className="w-full">
             <DefaultPage>
                 <Header/>
             </DefaultPage>
@@ -23,6 +23,6 @@ export default function Home(){
                 <LiveActivityBoard/>
                 <Footer/>
             </DefaultPage>
-        </>
+        </div>
     )
 }

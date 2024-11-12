@@ -14,7 +14,7 @@ import Image from "next/image";
 
 export default function PrimaryNFTCard(){
     return(
-        <div className="bg-[url('../assets/raffleBG.svg')] bg-cover bg-no-repeat flex justify-center px-12 mx-10 pb-3 pt-4">
+        <div className="bg-[url('../assets/raffleBG.svg')] bg-cover bg-no-repeat flex justify-center lg:px-12 lg:mx-10 pb-3 pt-4">
             <Card className='w-full'>
                 <CardContent className='px-0 pt-3'>
                     <Image className='w-full py-2' src={placeholderNFT} alt={'NFT'}/>
@@ -44,7 +44,7 @@ export default function PrimaryNFTCard(){
 
                     <p className='text-secondary font-mono text-xl !mb-2'>Ticket Sales End:</p>
                     {/*<div className='font-mono text-secondary'>*/}
-                        <Countdown days={3} hours={6} minutes={10}/>
+                        <Countdown className="scale-50 lg:scale-100" days={3} hours={6} minutes={10}/>
                     {/*</div>*/}
                 </CardHeader>
                 <CardFooter className='px-0 flex flex-col'>

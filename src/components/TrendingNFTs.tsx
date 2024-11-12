@@ -6,21 +6,21 @@ import PrimaryNFTCard from "@/components/PrimaryNFTCard.tsx";
 export default function TrendingNFTs(){
     return (
         <>
-            <div className='flex justify-between my-10'>
+            <div className='flex flex-col xl:flex-row justify-between my-10'>
                 <h3 className='font-block text-primary'>Trending Ending Soon</h3>
 
-                <div className='flex gap-3'>
+                <div className='grid grid-cols-1 lg:grid-cols-3 gap-3'>
                     <WireframeButton name='Featured' />
                     <WireframeButton name='Past Raffles' />
                     <PrimaryButton active={true} name='Play!' />
                 </div>
             </div>
 
-            <div className='flex'>
-                <div className='w-2/5'>
+            <div className='grid grid-cols-1 xl:grid-cols-[1fr,3fr] gap-10'>
+                <div className=''>
                     <PrimaryNFTCard />
                 </div>
-                <div className='w-3/5 grid grid-cols-3 gap-5'>
+                <div className='grid grid-cols-1 xl:grid-cols-1 gap-5'>
                     <NFTCard/>
                     <NFTCard/>
                     <NFTCard/>
