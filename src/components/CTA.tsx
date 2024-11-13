@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function CTA(){
     return (
-        <div className='grid grid-cols-1 xl:px-40 xl:pb-20 bg-[url("../assets/CTABG.png");] bg-no-repeat bg-cover'>
+        <div className='grid grid-cols-1 xl:px-40 xl:pb-20 xl:grid-cols-2 bg-[url("../assets/CTABG.png");] bg-no-repeat bg-cover'>
             <div>
                 <Image src={RNCoins} alt={'RaffleNerds Coins'} className='w-full'/>
             </div>

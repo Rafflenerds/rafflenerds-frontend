@@ -3,16 +3,17 @@ import {Avatar} from "@/components/ui/avatar.tsx";
 import iconVerified from "../assets/iconVerified.png"
 import {AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import { useRouter } from 'next/navigation';
+import {cn} from "@/lib/utils.ts";
 
 
-export default function HamburgerMenu(){
+export default function HamburgerMenu({className}: {className?: string}){
     const router = useRouter();
 
     function nav(page: string){
         router.push(page);
     }
     return(
-        <div className='flex flex-col gap-2 w-80 border-2 p-3 border-primary absolute right-60 bg-black '>
+        <div className={cn('flex flex-col gap-2 w-80 border-2 p-3 border-primary absolute right-60 bg-black', className)}>
             <div className='border-2 p-3 border-primary rounded-xl flex flex-row'>
                 <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" />
