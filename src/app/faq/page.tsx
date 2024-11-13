@@ -21,7 +21,7 @@ export default function Faq(){
             <Separator className='bg-primary h-0.5'/>
             {/*todo: idk if a search is practical*/}
 
-            <div className='gap-8 grid grid-cols-2 m-20'>
+            <div className='gap-8 grid grid-cols-1 xl:grid-cols-2 mt-10 mb-20 xl:m-20'>
                 <FeatureCard icon={iconStarted} title='Getting started' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris'/>
                 <FeatureCard icon={iconUser} title='User Account' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris'/>
                 <FeatureCard icon={iconTicket} title='Raffle Concern' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris'/>
@@ -30,7 +30,7 @@ export default function Faq(){
                 <FeatureCard icon={iconQuestion} title='How Raffles Work?' description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris'/>
             </div>
             <h2 className='font-block text-primary mb-10'>Frequently Asked Questions</h2>
-            <div className='mb-10 grid gap-5 w-3/5 m-auto'>
+            <div className='mb-10 grid gap-5 xl:w-3/5 m-auto'>
                 <FaqAccordion question='Lorem ipsum dolor sit amet' answer='Lorem ipsum dolor sit amet'/>
                 <FaqAccordion question='Lorem ipsum dolor sit amet' answer='Lorem ipsum dolor sit amet'/>
                 <FaqAccordion question='Lorem ipsum dolor sit amet' answer='Lorem ipsum dolor sit amet'/>
