@@ -78,12 +78,12 @@ export function CreateRaffleForm(){
     const [nftType, setNftType] = useState<z.infer<typeof zNftType>>('erc721');
 
     return (
-            <Form {...form} >
-                <form onSubmit={form.handleSubmit(onSubmit, (e)=> console.log(e))} className="w-3/5">
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit, (e)=> console.log(e))} className="text-center">
                     <div className='border border-primary rounded p-8 mb-10'>
                         <h3 className='text-white font-block text-xl mb-6 text-center'>Raffle Details</h3>
                         {/*top*/}
-                        <div className='flex items-center justify-between'>
+                        <div className='flex flex-col xl:flex-row gap-4 xl:gap-0 items-center justify-between'>
 
 
                             <FormField
@@ -91,7 +91,7 @@ export function CreateRaffleForm(){
                                 name="endDate"
                                 render={({field}) => (
                                     <FormItem className="flex flex-col">
-                                        <FormLabel className='text-white font-block text-xs'>Raffle End Date</FormLabel>
+                                        <FormLabel className='text-white font-block text-sm xl:text-base'>Raffle End Date</FormLabel>
                                         <FormDatePicker {...field} />
                                         <FormMessage/>
                                     </FormItem>
@@ -103,7 +103,7 @@ export function CreateRaffleForm(){
 								name="nftAmount"
 								render={({field}) => (
                                     <FormItem className="flex flex-col">
-                                        <FormLabel className='text-white font-block text-xs'>NFT
+                                        <FormLabel className='text-white font-block text-sm xl:text-base'>NFT
                                             amount</FormLabel>
                                         <Input placeholder='No Limit' {...field}/>
                                         <FormMessage/>
@@ -116,7 +116,7 @@ export function CreateRaffleForm(){
                                 name="ticketPrice"
                                 render={({field}) => (
                                     <FormItem className="">
-                                        <FormLabel className='text-white font-block text-xs'>Price Per
+                                        <FormLabel className='text-white font-block text-sm xl:text-base'>Price Per
                                             Ticket</FormLabel>
                                         <div className="flex justify-center">
                                             <Input placeholder='0' {...field}/>
@@ -142,7 +142,7 @@ export function CreateRaffleForm(){
                         <Separator className='bg-primary my-5'/>
 
                         <h3 className='text-white font-block text-xl mb-6 text-center'>Ticket Limits</h3>
-                        <div className='flex items-center justify-between'>
+                        <div className='grid grid-cols-1 xl:grid-cols-3 gap-4 xl:gap-10 items-center justify-between'>
                             {/*left*/}
 
                             <FormField
@@ -150,7 +150,7 @@ export function CreateRaffleForm(){
                                 name="maxTickets"
                                 render={({field}) => (
                                     <FormItem className="flex flex-col">
-                                        <FormLabel className='text-white font-block text-xs'>Max tickets</FormLabel>
+                                        <FormLabel className='text-white font-block text-sm xl:text-base'>Max tickets</FormLabel>
                                         <Input placeholder='No Limit' {...field}/>
                                         <FormMessage/>
                                     </FormItem>
@@ -163,7 +163,7 @@ export function CreateRaffleForm(){
                                 name="maxTicketsPerUser"
                                 render={({field}) => (
                                     <FormItem className="flex flex-col">
-                                        <FormLabel className='text-white font-block text-xs'>Min per wallet</FormLabel>
+                                        <FormLabel className='text-white font-block text-sm xl:text-base'>Min per wallet</FormLabel>
                                         <Input placeholder='No Limit' {...field}/>
                                         <FormMessage/>
                                     </FormItem>
@@ -176,7 +176,7 @@ export function CreateRaffleForm(){
                                 name="maxTicketsPerUser"
                                 render={({field}) => (
                                     <FormItem className="flex flex-col">
-                                        <FormLabel className='text-white font-block text-xs'>Max per wallet</FormLabel>
+                                        <FormLabel className='text-white font-block text-sm xl:text-base'>Max per wallet</FormLabel>
                                         <Input placeholder='No Limit' {...field}/>
                                         <FormMessage/>
                                     </FormItem>
@@ -189,16 +189,16 @@ export function CreateRaffleForm(){
                         <Separator className='bg-primary my-5'/>
 
 
-                        <div className='text-left'>
+                        <div className='text-center'>
                             <h3 className='text-white font-block text-xl mb-6 text-center'>Offers</h3>
-                            <div className='flex items-center justify-between'>
+                            <div className='grid grid-cols-1 xl:grid-cols-3 gap-4 items-center justify-between'>
 
                                 <FormField
                                     control={form.control}
                                     name={`bulkDiscounts.${discountIndex}.minTickets`}
                                     render={({field}) => (
                                         <FormItem className="flex flex-col">
-                                            <FormLabel className='text-white font-block text-xs'>Min Tickets</FormLabel>
+                                            <FormLabel className='text-white font-block text-sm xl:text-base'>Min Tickets</FormLabel>
                                             <Input placeholder='No Limit' {...field} value={minTickets}
                                                    onChange={(e) => setMinTickets(e.target.value)}/>
                                             <FormMessage/>
@@ -211,7 +211,7 @@ export function CreateRaffleForm(){
                                     name={`bulkDiscounts.${discountIndex}.discountPrice`}
                                     render={({field}) => (
                                         <FormItem className="flex flex-col">
-                                            <FormLabel className='text-white font-block text-xs'>Discount
+                                            <FormLabel className='text-white font-block text-sm xl:text-base'>Discount
                                                 Price</FormLabel>
                                             <Input placeholder='0' {...field} value={discount}
                                                    onChange={(e) => setDiscount(e.target.value)}/>
@@ -223,7 +223,7 @@ export function CreateRaffleForm(){
                                 <PrimaryButton onClick={() => addDiscountHandler({
                                     minTickets: Number(minTickets),
                                     discountPrice: Number(discount)
-                                })} name="Add Offer" active={true}/>
+                                })} name="Add Offer" active={true} className="mt-auto"/>
                             </div>
 
                         </div>
