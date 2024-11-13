@@ -15,7 +15,7 @@ import Image from "next/image";
 export default function LiveActivityBoard(){
     return(
         <>
-            <h2 className='text-3xl text-white font-block mt-60 mb-8'>Live Activity Board</h2>
+            <h2 className='text-xl text-white font-block mt-10 xl:mt-60 mb-8 xl:text-3xl'>Live Activity Board</h2>
             <Table className="">
                 <TableHeader className='font-block'>
                     <TableRow>

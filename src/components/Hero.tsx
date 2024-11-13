@@ -3,6 +3,6 @@ import Image from "next/image";
 
 export default function Hero(){
     return(
-        <Image className='w-full' draggable={false} src={hero} alt={'New Raffles Everyday!'}/>
+        <Image className='w-full mt-4 xl:mt-0' draggable={false} src={hero} alt={'New Raffles Everyday!'}/>
     )
 }
