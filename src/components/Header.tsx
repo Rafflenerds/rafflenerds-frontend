@@ -29,7 +29,7 @@ export default function Header() {
 
     const header = <header className='flex'>
         <div className='flex space-x-[20px]'>
-            <a href='/public'><Image className='w-[150px] h-auto select-none' src={RNLogo} alt={'RaffleNerds Logo'}/></a>
+            <a href='./'><Image className='w-[150px] h-auto select-none' src={RNLogo} alt={'RaffleNerds Logo'}/></a>
             <WireframeButton className="hidden lg:block" name="Play!"/>
         </div>
 
