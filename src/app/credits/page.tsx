@@ -1,3 +1,4 @@
+"use client";
 import Header from "@/components/Header.tsx";
 import Footer from "@/components/Footer.tsx";
 import PrimaryButton from "@/components/PrimaryButton.tsx";
@@ -15,8 +16,12 @@ import iconDropdown from "@/assets/iconDropdown.svg"
 import {Input} from "@/components/ui/input.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
+import {useState} from "react";
 
+type mode = 'buy' | 'redeem';
 export default function Credits() {
+    const [mode, setMode] = useState<mode>('buy');
+
     return (
         <DefaultPage>
             <Header/>
@@ -32,12 +37,12 @@ export default function Credits() {
 
                     {/*buy and redeem*/}
                     <div className='flex flex-col gap-4 justify-between w-full p-y2 mt-5 xl:flex-row'>
-                        <PrimaryButton active={true} name='Buy Credits'/>
-                        <SecondaryButton name='Redeem Credits' className='py-0 text-primary'/>
+                        <PrimaryButton active={mode === 'buy'} name='Buy Credits'  onClick={()=>setMode('buy')}/>
+                        <PrimaryButton active={mode === 'redeem'} name='Redeem Credits' className='py-0 text-primary' onClick={()=>setMode('redeem')}/>
                     </div>
 
                     {/*amount and currency*/}
-                    <div className='flex justify-between border border-primary rounded-2xl w-full px-6 py-5 my-5'>
+                    <div className='flex justify-between border border-primary rounded-2xl w-full p-2 xl:px-6 py-5 my-5'>
                         <Input className='text-white font-block !border-none focus-visible:border-none focus-visible:ring-0 xl:text-xl w-2/5' type="number" defaultValue={500} />
 
                         <DropdownMenu>
@@ -56,8 +61,8 @@ export default function Credits() {
                     </div>
 
                     {/*network and fees*/}
-                    <div className='flex justify-between border border-primary border-dashed rounded-3xl w-full px-8 py-3 mb-5'>
-                        <p className='text-white font-regular'>Est total fees: $2.96</p>
+                    <div className='flex justify-between border border-primary border-dashed rounded-3xl w-full px-4 p-2 xl:px-8 xl:py-3 mb-5'>
+                        <p className='text-white font-regular text-center'>Est total fees: $2.96</p>
 
                         <DropdownMenu>
                             <DropdownMenuTrigger className='text-primary font-block text-sm flex my-auto'>
@@ -74,8 +79,8 @@ export default function Credits() {
                         </DropdownMenu>
                     </div>
 
-                    <PrimaryButton active={true} className='mb-8 py-6 px-12 mt-3 text-[1rem]'  name='Buy Credits'  />
-                    <p className='text-white font-regular mb-10 text-xl'>By continuing you agree to our <a href='#' className='text-primary'>terms and services</a></p>
+                    <PrimaryButton active={true} className='mb-8 py-6 px-12 mt-3'  name={mode === "buy" ? 'Buy Credits': 'Redeem Credits'}  />
+                    <p className='text-white font-regular mb-10 text-l text-center'>By continuing you agree to our <a href='#' className='text-primary'>terms and services</a></p>
                 </div>
             </div>
 

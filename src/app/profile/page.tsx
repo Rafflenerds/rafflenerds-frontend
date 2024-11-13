@@ -17,6 +17,7 @@ import {GradientBorder} from "@/components/GradientBorder.tsx";
 import iconDropdown from "@/assets/iconDropdown.svg";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
+import AutoScale from "@/components/AutoScale.tsx";
 
 
 export default function Profile(){
@@ -27,23 +28,23 @@ export default function Profile(){
             <div className='h-16'></div>
             {/*1px border*/}
             <GradientBorder>
-                <div className="border rounded-2xl pt-60 px-10 pb-5 bg-[url('../assets/profileBGPlaceholder.png')] bg-cover">
-                    <div className='flex justify-between'>
+                <div className="border rounded-2xl py-5 lg:pt-60 px-10 bg-[url('../assets/profileBGPlaceholder.png')] bg-cover">
+                    <div className='flex flex-col lg:flex-row justify-between'>
                         {/*profile*/}
-                        <div className='flex '>
-                            <Avatar className='size-32 mr-8'>
+                        <div className='flex flex-col lg:flex-row'>
+                            <Avatar className='size-20 lg:size-32 mx-auto lg:mx-0 lg:mr-8'>
                                 <AvatarImage src="https://github.com/shadcn.png" />
                                 <AvatarFallback>CN</AvatarFallback>
                             </Avatar>
                             {/*user info*/}
-                            <div className='my-auto flex flex-col'>
+                            <div className='my-auto flex flex-col mt-8 lg:mt-auto'>
                                 <div className='flex mb-2'>
                                     <h1 className='font-block text-primary text-sm'>@mjbreese178</h1>
                                     {/*<a href='#'><Image className='ml-2 size-5' src={iconFlag} alt='Report User'/></a>*/}
                                 </div>
                                 {/*icons*/}
                                 <div className='flex mb-4'>
-                                    <UserLinks className='gap-2'/>
+                                    <UserLinks className='gap-6 mx-auto lg:mx-0 lg:gap-2'/>
                                     {/*    <div className='font-mono text-black bg-primary rounded-2xl text-sm px-3 ml-3'>*/}
                                     {/*        Verification Request*/}
                                     {/*    </div>*/}
@@ -52,9 +53,9 @@ export default function Profile(){
                             </div>
                         </div>
                         {/*stats*/}
-                        <div className='align-bottom mt-5'>
-                            <h1 className='font-block text-white text-xs text-left mb-3'>Raffle Stats</h1>
-                            <div className='flex flex-row gap-5'>
+                        <div className='align-bottom mt-5 text-center lg:text-left' >
+                            <h1 className='font-block text-white text-xs mb-3'>Raffle Stats</h1>
+                            <div className='flex flex-col lg:flex-row gap-5'>
 
                                 <div className='flex flex-col'>
                                     <p className='text-primary text-2xl flex justify-evenly font-mono'>4418</p>
@@ -116,18 +117,20 @@ export default function Profile(){
 
 
             {/*----------------sort ui--------------------*/}
-            <div className='flex justify-between mb-10 mt-5'>
+            <div className='flex flex-col lg:flex-row justify-between mb-10 mt-5'>
 
-                <Tabs defaultValue="created" className="w-[400px]">
-                    <TabsList>
+
+                <Tabs defaultValue="created" className="xl:w-[400px]" >
+                    <TabsList className="flex-wrap gap-4 pb-20 ring-0 lg:ring-1 lg:pb-1 lg:flex-row">
                         <TabsTrigger value="created">Raffles Created</TabsTrigger>
                         <TabsTrigger value="purchased">Raffles Purchased</TabsTrigger>
                     </TabsList>
                 </Tabs>
 
 
+
                 <DropdownMenu>
-                    <DropdownMenuTrigger className='border border-primary rounded-xl text-accent font-mono px-5 py-2 flex my-auto'>
+                    <DropdownMenuTrigger className='border border-primary rounded-xl text-accent font-mono px-5 py-2 flex my-auto mt-5 lg:mt-0'>
                         Sort Entries
                         <Image className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
                     </DropdownMenuTrigger>
@@ -141,18 +144,20 @@ export default function Profile(){
                 </DropdownMenu>
             </div>
             {/*Raffles*/}
-            <div className='grid grid-cols-5 gap-2 w-fit mx-auto'>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-                <RaffleWinnerCard/>
-            </div>
+            <AutoScale>
+                <div className='grid grid-cols-1 xl:grid-cols-5 gap-2 w-fit mx-auto'>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                    <RaffleWinnerCard/>
+                </div>
+            </AutoScale>
             <Footer/>
         </DefaultPage>
     )

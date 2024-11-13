@@ -13,7 +13,7 @@ export default function HamburgerMenu({className}: {className?: string}){
         router.push(page);
     }
     return(
-        <div className={cn('flex flex-col gap-2 w-80 border-2 p-3 border-primary absolute right-60 bg-black', className)}>
+        <div className={cn('flex flex-col gap-2 w-80 border-2 p-3 border-primary absolute right-60 bg-black z-10', className)}>
             <div className='border-2 p-3 border-primary rounded-xl flex flex-row'>
                 <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" />
