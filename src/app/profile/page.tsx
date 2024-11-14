@@ -1,10 +1,9 @@
+'use server';
 import {Avatar} from "@/components/ui/avatar.tsx";
 import {AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import Header from "@/components/Header.tsx";
 import Footer from "@/components/Footer.tsx";
-import PrimaryButton from "@/components/PrimaryButton.tsx";
 import {UserLinks} from "@/components/UserLinks.tsx";
-import iconFlag from "@/assets/iconFlag.svg";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -18,9 +17,19 @@ import iconDropdown from "@/assets/iconDropdown.svg";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
 import AutoScale from "@/components/AutoScale.tsx";
+import {getUser} from "@/actions/getUser.ts";
+import {useSearchParams} from "next/navigation";
 
+export default async function Profile({params, searchParams}: {
+    params: Promise<{ slug: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>}) {
 
-export default function Profile(){
+    const address = (await searchParams).address as string;
+    if (!address) {
+        return <div>Address not found</div>;
+    }
+    const user = await getUser(address);
+
     return (
         <DefaultPage>
             <Header/>
@@ -28,23 +37,23 @@ export default function Profile(){
             <div className='h-16'></div>
             {/*1px border*/}
             <GradientBorder>
-                <div className="border rounded-2xl py-5 lg:pt-60 px-10 bg-[url('../assets/profileBGPlaceholder.png')] bg-cover">
+                <div className={`border rounded-2xl py-5 lg:pt-60 px-10 bg-[url(${user.bannerUrl})] bg-cover`}>
                     <div className='flex flex-col lg:flex-row justify-between'>
                         {/*profile*/}
                         <div className='flex flex-col lg:flex-row'>
                             <Avatar className='size-20 lg:size-32 mx-auto lg:mx-0 lg:mr-8'>
-                                <AvatarImage src="https://github.com/shadcn.png" />
-                                <AvatarFallback>CN</AvatarFallback>
+                                <AvatarImage src={user.logoUrl}/>
+                                <AvatarFallback>{user.username[0]}</AvatarFallback>
                             </Avatar>
                             {/*user info*/}
                             <div className='my-auto flex flex-col mt-8 lg:mt-auto'>
                                 <div className='flex mb-2'>
-                                    <h1 className='font-block text-primary text-sm'>@mjbreese178</h1>
+                                    <h1 className='font-block text-primary text-sm'>{"@" + user.username}</h1>
                                     {/*<a href='#'><Image className='ml-2 size-5' src={iconFlag} alt='Report User'/></a>*/}
                                 </div>
                                 {/*icons*/}
                                 <div className='flex mb-4'>
-                                    <UserLinks className='gap-6 mx-auto lg:mx-0 lg:gap-2'/>
+                                    <UserLinks links={user.links} className='gap-6 mx-auto lg:mx-0 lg:gap-2'/>
                                     {/*    <div className='font-mono text-black bg-primary rounded-2xl text-sm px-3 ml-3'>*/}
                                     {/*        Verification Request*/}
                                     {/*    </div>*/}
@@ -53,7 +62,7 @@ export default function Profile(){
                             </div>
                         </div>
                         {/*stats*/}
-                        <div className='align-bottom mt-5 text-center lg:text-left' >
+                        <div className='align-bottom mt-5 text-center lg:text-left'>
                             <h1 className='font-block text-white text-xs mb-3'>Raffle Stats</h1>
                             <div className='flex flex-col lg:flex-row gap-5'>
 
@@ -120,7 +129,7 @@ export default function Profile(){
             <div className='flex flex-col lg:flex-row justify-between mb-10 mt-5'>
 
 
-                <Tabs defaultValue="created" className="xl:w-[400px]" >
+                <Tabs defaultValue="created" className="xl:w-[400px]">
                     <TabsList className="flex-wrap gap-4 pb-20 ring-0 lg:ring-1 lg:pb-1 lg:flex-row">
                         <TabsTrigger value="created">Raffles Created</TabsTrigger>
                         <TabsTrigger value="purchased">Raffles Purchased</TabsTrigger>
@@ -128,9 +137,9 @@ export default function Profile(){
                 </Tabs>
 
 
-
                 <DropdownMenu>
-                    <DropdownMenuTrigger className='border border-primary rounded-xl text-accent font-mono px-5 py-2 flex my-auto mt-5 lg:mt-0'>
+                    <DropdownMenuTrigger
+                        className='border border-primary rounded-xl text-accent font-mono px-5 py-2 flex my-auto mt-5 lg:mt-0'>
                         Sort Entries
                         <Image className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
                     </DropdownMenuTrigger>

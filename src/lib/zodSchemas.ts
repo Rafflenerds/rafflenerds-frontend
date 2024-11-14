@@ -36,6 +36,8 @@ export const zLink = z.object({
     url: z.string().url(),
 });
 
+export type Link = z.infer<typeof zLink>;
+
 /***************************************/
 /************* User Schemas ************/
 /***************************************/
