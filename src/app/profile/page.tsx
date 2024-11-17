@@ -18,9 +18,8 @@ import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
 import AutoScale from "@/components/AutoScale.tsx";
 import {getUser} from "@/actions/getUser.ts";
-import {useSearchParams} from "next/navigation";
 
-export default async function Profile({params, searchParams}: {
+export default async function Profile({searchParams}: {
     params: Promise<{ slug: string }>
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>}) {
 
@@ -30,6 +29,10 @@ export default async function Profile({params, searchParams}: {
     }
     const user = await getUser(address);
 
+    if (!user) {
+        return <div>User not found</div>;
+    }
+
     return (
         <DefaultPage>
             <Header/>
@@ -37,7 +40,7 @@ export default async function Profile({params, searchParams}: {
             <div className='h-16'></div>
             {/*1px border*/}
             <GradientBorder>
-                <div className={`border rounded-2xl py-5 lg:pt-60 px-10 bg-[url(${user.bannerUrl})] bg-cover`}>
+                <div className={`border rounded-2xl py-5 lg:pt-60 px-10 bg-background bg-cover`}>
                     <div className='flex flex-col lg:flex-row justify-between'>
                         {/*profile*/}
                         <div className='flex flex-col lg:flex-row'>
