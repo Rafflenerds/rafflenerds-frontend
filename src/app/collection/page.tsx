@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu.tsx";
 import iconDropdown from "@/assets/iconDropdown.svg";
 import {SearchBar} from "@/components/SearchBar.tsx";
-import greenCircle from "@/assets/greenCircle.svg";
+import GreenCircle from "@/assets/greenCircle.svg";
 import nftCollectionPlaceholder from "@/assets/nftCollectionPlaceholder.png";
 import {NftFilters} from "@/components/NftFilters.tsx";
 import NFTCard from "@/components/NFTCard.tsx";
@@ -47,6 +47,7 @@ export default function NftCollection(){
                                 </div>
                                 {/*icons*/}
                                 <div className='flex mb-2'>
+                                    {/*todo add links*/}
                                     <UserLinks className='gap-2'/>
 
                                     {/*    todo: add verification symbol*/}
@@ -105,7 +106,7 @@ export default function NftCollection(){
             {/*----------------sort ui--------------------*/}
             <div className='flex justify-between mb-10 mt-8 gap-3'>
 
-                <Image className='size-3 my-auto' src={greenCircle} alt='Green Circle'/>
+                <GreenCircle className='size-3 my-auto' alt='Green Circle'/>
                 <p className='text-white text-xl font-mono my-auto mr-4'>Live</p>
 
                 <p className='text-primary text-sm font-block my-auto'>4,985</p>

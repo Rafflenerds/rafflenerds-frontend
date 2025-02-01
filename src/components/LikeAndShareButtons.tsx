@@ -1,12 +1,11 @@
-import buttonHeart from "@/assets/buttonHeart.svg";
-import buttonShare from "@/assets/buttonShare.svg";
-import Image from "next/image";
+import ButtonHeart from "@/assets/buttonHeart.svg";
+import ButtonShare from "@/assets/buttonShare.svg";
 
 export const LikeAndShareButtons = () => {
     return (
         <div className='flex justify-evenly my-auto'>
-            <a href=''><Image src={buttonHeart} alt='Heart' className='w-10 mr-3'/></a>
-            <a href=''><Image src={buttonShare} alt='Share' className='w-10'/></a>
+            <a href=''><ButtonHeart alt='Heart' className='w-10 mr-3'/></a>
+            <a href=''><ButtonShare alt='Share' className='w-10'/></a>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import nftPlaceholder from '../assets/nftPlaceholder.png';
-import crown from '../assets/crown.svg';
+import Crown from '../assets/crown.svg';
 import Image from "next/image";
 
 export default function RaffleWinnerCard(){
@@ -8,7 +8,7 @@ export default function RaffleWinnerCard(){
             <Image className='w-full pb-4' src={nftPlaceholder} alt='NFT'/>
             <div className='flex flex-col'>
                 <div className='flex flex-row justify-center'>
-                    <Image className='w-7' src={crown} alt='Crown Icon'/>
+                    <Crown className='w-7' alt='Crown Icon'/>
                     <p className='font-sans text-[#FFD86A] uppercase mt-1'>Raffle Winner!</p>
                 </div>
                 <p className='font-sans text-primary text-xl'>@mjbreese178</p>
