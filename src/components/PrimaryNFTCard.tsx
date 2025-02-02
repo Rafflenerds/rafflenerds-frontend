@@ -5,7 +5,7 @@ import {
     CardHeader,
 } from "@/components/ui/card"
 import placeholderNFT from "../assets/nftPlaceholder.png";
-import greenCircle from "../assets/greenCircle.svg";
+import GreenCircle from "../assets/greenCircle.svg";
 import PrimaryButton from "@/components/PrimaryButton.tsx";
 import {UserLinks} from "@/components/UserLinks.tsx";
 import {LikeAndShareButtons} from "@/components/LikeAndShareButtons.tsx";
@@ -23,7 +23,7 @@ export default function PrimaryNFTCard(){
                     <div className='flex justify-between'>
                         <span className='flex'>
                             <p className='text-primary mr-2 mt-[-5px]'>Bored Ape Yacht Club</p>
-                            <Image className='w-[15px] mb-2' src={greenCircle} alt='Active'/>
+                            <GreenCircle className='w-[15px] mb-2' alt='Active'/>
                         </span>
 
                         <p className='text-primary'>FP: 12.9ETH</p>
@@ -38,6 +38,7 @@ export default function PrimaryNFTCard(){
                     <div className='flex justify-between text-[#cb5efe] text-2xl !mt-0 font-mono !mb-4'>
                         <p>mranonym619</p>
                         <div className='w-[100px]'>
+                            {/*todo add links*/}
                             <UserLinks/>
                         </div>
                     </div>

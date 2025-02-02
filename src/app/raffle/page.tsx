@@ -2,8 +2,8 @@ import PrimaryButton from "@/components/PrimaryButton.tsx";
 import {CheckboxWithText} from "@/components/CheckboxWithText.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
 import nftPlaceholder from "@/assets/nftPlaceholder.png";
-import buttonHeart from "@/assets/buttonHeart.svg";
-import buttonShare from "@/assets/buttonShare.svg";
+import ButtonHeart from "@/assets/buttonHeart.svg";
+import ButtonShare from "@/assets/buttonShare.svg";
 import iconX from "@/assets/iconX.png";
 import iconDiscord from "@/assets/iconDiscord.png";
 import iconTelegram from "@/assets/iconTelegram.png";
@@ -34,10 +34,10 @@ export default function Raffle(){
                                 <h4 className='text-primary font-sans'>FP: 12.9 ETH</h4>
                                 <div className='flex justify-end'>
                                     <a href='#'>
-                                        <Image className='mr-2' src={buttonHeart} alt='Favourite Button'/>
+                                        <ButtonHeart className='mr-2' alt='Favourite Button'/>
                                     </a>
                                     <a href='#'>
-                                        <Image src={buttonShare} alt='Share Button'/>
+                                        <ButtonShare alt='Share Button'/>
                                     </a>
                                 </div>
 

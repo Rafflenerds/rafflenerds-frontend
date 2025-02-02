@@ -11,8 +11,8 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import SecondaryButton from "@/components/SecondaryButton.tsx";
-import iconCoin from "@/assets/iconCoin.svg";
-import iconDropdown from "@/assets/iconDropdown.svg"
+import IconCoin from "@/assets/iconCoin.svg";
+import IconDropdown from "@/assets/iconDropdown.svg"
 import {Input} from "@/components/ui/input.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
 import Image from "next/image";
@@ -31,7 +31,7 @@ export default function Credits() {
                 {/*box*/}
                 <div className="flex flex-col items-center justify-center border border-primary rounded-xl p-4 xl:py-8 xl:px-10 max-w-[45rem] w-full">
                     <div className='flex justify-end w-full'>
-                        <Image src={iconCoin} alt='Coin Icon'/>
+                        <IconCoin alt='Coin Icon'/>
                         <p className='text-primary font-mono ml-2 text-2xl'>999</p>
                     </div>
 
@@ -48,7 +48,7 @@ export default function Credits() {
                         <DropdownMenu>
                             <DropdownMenuTrigger className='text-secondary font-block text-sm xl:text-base flex my-auto'>
                                 USDT
-                                <Image className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
+                                <IconDropdown className='my-auto ml-2' alt='Dropdown'/>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>Token</DropdownMenuLabel>
@@ -67,7 +67,7 @@ export default function Credits() {
                         <DropdownMenu>
                             <DropdownMenuTrigger className='text-primary font-block text-sm flex my-auto'>
                                 Polygon
-                                <Image className='my-auto ml-2' src={iconDropdown} alt='Dropdown'/>
+                                <IconDropdown className='my-auto ml-2' alt='Dropdown'/>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuLabel>Network</DropdownMenuLabel>

@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card"
 import placeholderNFT from "../assets/nftPlaceholder.png";
 import CaptionButton from "@/components/CaptionButton.tsx";
-import greenCircle from "../assets/greenCircle.svg";
+import GreenCircle from "../assets/greenCircle.svg";
 import Image from "next/image";
 
 export default function NFTCard(){
@@ -20,7 +20,7 @@ export default function NFTCard(){
                 <CardHeader className='text-left pt-0 pb-2 px-0'>
                     <span className='flex'>
                         <p className='text-primary mr-2 mt-[-5px]'>Bored Ape Yacht Club</p>
-                        <Image className='w-[15px] mb-1' src={greenCircle} alt='Active'/>
+                        <GreenCircle className='w-[15px] mb-1' alt='Active'/>
                     </span>
                     <CardTitle className='text-white text-2xl !mt-1'>#5570</CardTitle>
 

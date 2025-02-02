@@ -6,8 +6,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import iconCoin from "../assets/iconCoin.svg"
-import iconSquare from "../assets/iconSquare.svg"
+import IconCoin from "../assets/iconCoin.svg"
+import IconSquare from "../assets/iconSquare.svg"
 import {AvatarFallback, AvatarImage} from "@radix-ui/react-avatar";
 import {Avatar} from "@/components/ui/avatar.tsx";
 import Image from "next/image";
@@ -45,7 +45,7 @@ export default function LiveActivityBoard(){
                         <TableCell className='text-left'>ENTRY</TableCell>
                         <TableCell className='text-primary align-middle'>
                             <div className="flex items-center">
-                                <Image src={iconCoin} alt='Coins' className='mr-2'/>
+                                <IconCoin alt='Coins' className='mr-2'/>
                                 0.004
                             </div>
                         </TableCell>
