@@ -87,6 +87,16 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      
+      backgroundImage: {
+        'nft-card': 'linear-gradient(160deg, \n' +
+            '    rgba(0, 255, 255, 1) 0%,  /* Cyan at the top, fully opaque */\n' +
+            '    rgba(0, 255, 255, 1) 10%, /* Cyan with decreasing opacity */\n' +
+            '    rgba(0, 255, 255, 0.2) 30%, /* Further decrease in opacity */\n' +
+            '    rgba(255, 255, 255, 0.1) 70%, /* Almost white, very transparent */\n' +
+            '    rgba(255, 255, 255, 0) 100%  /* Fully transparent white at the bottom */\n' +
+            '  ); ',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
