@@ -2,6 +2,9 @@ import React from 'react';
 import CornerSvg from '@/public/custom_borders/raffle_winner/corner.svg';
 import BorderHorizontalSvg from '@/public/custom_borders/raffle_winner/border_horizontal.svg';
 import BorderVerticalSvg from '@/public/custom_borders/raffle_winner/border_vertical.svg';
+import Image from "next/image";
+import Crown from '../assets/crown.svg';
+import nftPlaceholder from '../assets/nftPlaceholder.png';
 
 export default function RaffleWinnerCard({ children, ...props }: React.ComponentProps<'div'>) {
     return (
@@ -26,7 +29,15 @@ export default function RaffleWinnerCard({ children, ...props }: React.Component
                     </div>
                 </div>
                 <div className="absolute inset-2 z-10">
-                    {children}
+                    <Image className='w-full pb-4' src={nftPlaceholder} alt='NFT'/>
+                    <div className='flex flex-col'>
+                        <div className='flex flex-row justify-center'>
+                            <Crown className='w-7' alt='Crown Icon'/>
+                            <p className='font-sans text-[#FFD86A] uppercase mt-1'>Raffle Winner!</p>
+                        </div>
+                        <p className='font-sans text-primary text-xl'>@mjbreese178</p>
+                        <p className='font-sans text-[#FFD86A] text-sm'>Won with 10 Ticket(s)</p>
+                    </div>
                 </div>
             </div>
         </div>
