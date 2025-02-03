@@ -6,8 +6,8 @@ import { unauthFetch } from './unauthFetch';
 
 type Nft = z.infer<typeof zNft>;
 
-export async function getCollectionNft(collectionId: string, tokenId: string): Promise<Nft> {
-	const response = await unauthFetch(`/nft-collections/${collectionId}/nfts/${tokenId}`);
+export async function getCollectionNft(chainId: number, address: string, tokenId: string): Promise<Nft> {
+	const response = await unauthFetch(`/nft-collections/${chainId}/${address}/nfts/${tokenId}`);
 	if (!response.ok) {
 		throw new Error(response.statusText);
 	}

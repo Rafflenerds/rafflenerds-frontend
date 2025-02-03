@@ -6,8 +6,8 @@ import { unauthFetch } from './unauthFetch';
 
 type NftSummary = z.infer<typeof zNftSummary>;
 
-export async function getAllCollectionNfts(id: string): Promise<NftSummary[]> {
-	const response = await unauthFetch(`/nft-collections/${id}/nfts`);
+export async function getAllCollectionNfts(chainId: string, address: string): Promise<NftSummary[]> {
+	const response = await unauthFetch(`/nft-collections/${chainId}/${address}/nfts`);
 	if (!response.ok) {
 		throw new Error(response.statusText);
 	}

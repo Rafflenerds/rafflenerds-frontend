@@ -1,3 +1,4 @@
+'use client';
 import {Input} from "@/components/ui/input.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
 import PrimaryButton from "@/components/PrimaryButton.tsx";
