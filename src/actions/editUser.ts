@@ -1,11 +1,7 @@
 'use server';
 
-import { zUser, zUserPartialUpdate } from '@/lib/zodSchemas';
-import { z } from 'zod';
+import { User, UserPartialUpdate, zUser } from '@/lib/zodSchemas';
 import { authFetch } from './authFetch';
-
-type User = z.infer<typeof zUser>;
-type UserPartialUpdate = z.infer<typeof zUserPartialUpdate>;
 
 export async function editUser(address: string, user: UserPartialUpdate): Promise<User> {
 	const response = await authFetch(`/users/${address}`, {

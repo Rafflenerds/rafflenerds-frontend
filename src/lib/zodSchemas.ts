@@ -3,6 +3,15 @@
 import { getAddress } from 'ethers';
 import { z } from 'zod';
 
+export const CREDIT_TRANSACTION_TYPES = [
+    'purchase_credits',
+    'withdraw_credits',
+    'purchase_raffle_entry',
+    'refund_raffle_entry',
+    'collect_raffle_pot',
+    'receive_gift',
+] as const;
+
 /***************************************/
 /************* Common Schemas **********/
 /***************************************/
@@ -20,23 +29,12 @@ export const zEthereumAddress = z.string().regex(/0x[a-fA-F0-9]{40}/, { message:
     return checksum;
 });
 
-// todo use real data
-enum LinkType {
-    Twitter = 'Twitter',
-    Instagram = 'Instagram',
-    Facebook = 'Facebook',
-    LinkedIn = 'LinkedIn',
-    GitHub = 'GitHub',
-    Website = 'Website',
-    Other = 'Other',
-}
+
 
 export const zLink = z.object({
-    type: z.nativeEnum(LinkType),
+    platform: z.enum(['twitter', 'discord', 'website']),
     url: z.string().url(),
 });
-
-export type Link = z.infer<typeof zLink>;
 
 /***************************************/
 /************* User Schemas ************/
@@ -44,19 +42,24 @@ export type Link = z.infer<typeof zLink>;
 export const zUser = z.object({
     id: z.string().uuid(),
     address: zEthereumAddress,
-    username: z.string().min(1),
+    username: z.string().min(1).nullable(),
     credits: z.coerce.number().int(),
-    logoUrl: z.string().url(),
-    bannerUrl: z.string().url(),
+    logoUrl: z.string().url().nullable(),
+    bannerUrl: z.string().url().nullable(),
     links: zLink.array(),
+    roles: z.string().array(),
     createdAt: z.string().datetime(),
     updatedAt: z.string().datetime(),
 });
+
+export type User = z.infer<typeof zUser>;
 
 export const zUserCreate = z.object({
     address: zEthereumAddress,
     username: z.string().min(1).optional(),
 });
+
+export type UserCreate = z.infer<typeof zUserCreate>;
 
 export const zUserPartialUpdate = z.object({
     username: z.string().min(1).optional(),
@@ -65,11 +68,7 @@ export const zUserPartialUpdate = z.object({
     links: zLink.array().optional(),
 });
 
-export const zUserSummary = zUser.pick({
-    address: true,
-    username: true,
-    credits: true,
-});
+export type UserPartialUpdate = z.infer<typeof zUserPartialUpdate>;
 
 /***************************************/
 /************ Admin Schemas ************/
@@ -79,9 +78,13 @@ export const zAdmin = z.object({
     username: z.string().min(1),
 });
 
+export type Admin = z.infer<typeof zAdmin>;
+
 export const zAdminCreate = z.object({
     address: zEthereumAddress,
 });
+
+export type AdminCreate = z.infer<typeof zAdminCreate>;
 
 
 /***************************************/
@@ -89,23 +92,16 @@ export const zAdminCreate = z.object({
 /***************************************/
 export const zCreditTransaction = z.object({
     id: z.string().uuid(),
-    type: z.enum([
-        'purchase',
-        'redeem',
-        'enter_raffle',
-        'refund_entry',
-        'collect_raffle_pot',
-        'reward',
-    ]),
+    type: z.enum(CREDIT_TRANSACTION_TYPES),
     amount: z.coerce.number().int(),
     createdAt: z.string().datetime(),
 });
 
+export type CreditTransaction = z.infer<typeof zCreditTransaction>;
+
 /***************************************/
 /************* NFT Schemas *************/
 /***************************************/
-export const zNftType = z.enum(['erc721', 'erc1155']);
-
 export const zNftCollection = z.object({
     id: z.string().uuid(),
     bannerUrl: z.string().url().optional(),
@@ -115,9 +111,11 @@ export const zNftCollection = z.object({
     logoUrl: z.string().url().optional(),
     name: z.string().optional(),
     slug: z.string().optional(),
-    type: zNftType,
+    type: z.enum(['erc721', 'erc1155']),
     verified: z.boolean(),
 });
+
+export type NftCollection = z.infer<typeof zNftCollection>;
 
 export const zNftCollectionCreate = z.object({
     bannerUrl: z.string().url().optional(),
@@ -129,8 +127,9 @@ export const zNftCollectionCreate = z.object({
     slug: z.string().optional(),
     type: z.enum(['erc721', 'erc1155']),
     verified: z.boolean(),
-    id: z.string().uuid(),
 });
+
+export type NftCollectionCreate = z.infer<typeof zNftCollectionCreate>;
 
 export const zNftCollectionPartialUpdate = z.object({
     bannerUrl: z.string().url().nullish(),
@@ -140,81 +139,72 @@ export const zNftCollectionPartialUpdate = z.object({
     slug: z.string().nullish(),
 });
 
-export const zNftCollectionSummary = zNftCollection.pick({
-    id: true,
-    chainId: true,
-    contractAddress: true,
-    name: true,
-    slug: true,
-    type: true,
-    verified: true,
-});
+export type NftCollectionPartialUpdate = z.infer<typeof zNftCollectionPartialUpdate>;
 
 export const zNft = z.object({
     id: z.string().uuid(),
-    imageUrl: z.string().url().optional(),
     tokenId: z.string().uuid(),
-    nftCollection: zNftCollectionSummary,
+    name: z.string().optional(),
+    description: z.string().optional(),
+    imageUrl: z.string().url().optional(),
+    nftCollection: zNftCollection.optional(),
 });
 
+export type Nft = z.infer<typeof zNft>;
+
 export const zNftCreate = z.object({
-    imageUrl: z.string().url().optional(),
     tokenId: z.string().uuid(),
+    name: z.string().optional(),
+    description: z.string().optional(),
+    imageUrl: z.string().url().optional(),
     nftCollectionId: z.string().uuid(),
 });
 
-export const zNftPartialUpdate = z.object({
-    imageUrl: z.string().url().nullable(),
-});
-
-export const zNftSummary = zNft.pick({ id: true, imageUrl: true, tokenId: true });
+export type NftCreate = z.infer<typeof zNftCreate>;
 
 /***************************************/
 /*********** Raffle Schemas ************/
 /***************************************/
-export const zBulkDiscounts = z.object({
+export const zBulkDiscount = z.object({
     minTickets: z.coerce.number().int(),
     discountPrice: z.coerce.number().int(),
 });
 
+export type BulkDiscount = z.infer<typeof zBulkDiscount>;
+
 export const zRaffle = z.object({
     id: z.string().uuid(),
-    bulkDiscounts: zBulkDiscounts.array(),
-    createdAt: z.string().datetime(),
-    endDate: z.string().datetime(),
-    lister: zUserSummary,
+    lister: zUser,
+    nft: zNft,
+    nftAmount: z.coerce.number().int(),
+    ticketPrice: z.coerce.number().int(),
     maxTickets: z.coerce.number().int(),
     maxTicketsPerUser: z.coerce.number().int(),
     minTicketsPerUser: z.coerce.number().int(),
-    nft: zNftSummary,
-    nftAmount: z.coerce.number().int(),
+    bulkDiscounts: zBulkDiscount.array(),
+    drawBlockHash: z.string().regex(/^0x[a-fA-F0-9]{64}$/).nullable(),
     startDate: z.string().datetime(),
-    ticketPrice: z.coerce.number().int(),
+    endDate: z.string().datetime(),
+    createdAt: z.string().datetime(),
     updatedAt: z.string().datetime(),
 });
 
+export type Raffle = z.infer<typeof zRaffle>;
+
 export const zRaffleCreate = z.object({
-    bulkDiscounts: zBulkDiscounts.array().optional(),
-    endDate: z.string().datetime(),
     listerId: z.string().uuid(),
+    nftId: z.string().uuid(),
+    nftAmount: z.coerce.number().int(),
+    ticketPrice: z.coerce.number().int(),
     maxTickets: z.coerce.number().int(),
     maxTicketsPerUser: z.coerce.number().int(),
     minTicketsPerUser: z.coerce.number().int(),
-    nftAmount: z.coerce.number().int(),
-    nftId: z.string().uuid(),
-    ticketPrice: z.coerce.number().int(),
+    bulkDiscounts: zBulkDiscount.array(),
+    startDate: z.string().datetime(),
+    endDate: z.string().datetime(),
 });
 
-export const zRaffleSummary = zRaffle.pick({
-    id: true,
-    endDate: true,
-    maxTickets: true,
-    maxTicketsPerUser: true,
-    minTicketsPerUser: true,
-    nftAmount: true,
-    startDate: true,
-    ticketPrice: true,
-});
+export type RaffleCreate = z.infer<typeof zRaffleCreate>;
 
 export const zRaffleEntry = z.object({
     id: z.string().uuid(),
@@ -226,25 +216,24 @@ export const zRaffleEntry = z.object({
     // User address can be inferred from the JWT
 });
 
+export type RaffleEntry = z.infer<typeof zRaffleEntry>;
+
 export const zRaffleEntryCreate = z.object({
     tickets: z.coerce.number().int().min(1),
 });
 
-export const zRaffleEntryPartialUpdate = z.object({
-    tickets: z.coerce.number().int().min(1),
-});
+export type RaffleEntryCreate = z.infer<typeof zRaffleEntryCreate>;
 
 export const zRaffleWinner = z.object({
+    winner: zUser.nullable(),
     createdAt: z.string().datetime().nullable(),
-    drawTransactionHash: z.string().regex(/0x[a-fA-F0-9]{64}/).nullable(),
-    raffle: zRaffleSummary,
-    winner: zUserSummary.nullable(),
 });
 
+export type RaffleWinner = z.infer<typeof zRaffleWinner>;
+
 export const zRaffleWinnerCreate = z.object({
-    drawTransactionHash: z.string().regex(/0x[a-fA-F0-9]{64}/),
     raffleId: z.string().uuid(),
     winnerId: z.string().uuid(),
 });
 
-export const zNftCollectionVerificationRequest = z.object({ accepted: z.boolean() });
+export type RaffleWinnerCreate = z.infer<typeof zRaffleWinnerCreate>;

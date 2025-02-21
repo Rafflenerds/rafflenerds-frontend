@@ -16,7 +16,7 @@ export default function NFTCard(){
     return(
         <div className="border-2 border-primary rounded-xl h-fit w-fit ml-5 mr-4 mb-5 -z-10 relative">
             
-            <div className="w-full h-full bg-nft-card z-10 rounded-xl p-8">
+            <div className="w-full h-full bg-nft-card z-10 rounded-xl px-8">
                 
                 <Card className='w-full h-full'>
                     <CardContent className='px-0 pb-0 pt-3'>

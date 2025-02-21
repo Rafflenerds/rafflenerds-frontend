@@ -2,25 +2,13 @@
 import Header from "@/components/Header.tsx";
 import Footer from "@/components/Footer.tsx";
 import iconPlus from "@/assets/iconPlus.png";
-import {DatePicker} from "@/components/DatePicker.tsx";
-import { Input } from "@/components/ui/input"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {Separator} from "@/components/ui/separator.tsx";
-import PrimaryButton from "@/components/PrimaryButton.tsx";
-import {z} from "zod";
 import Image from "next/image";
 import {CreateRaffleForm} from "@/components/CreateRaffleForm.tsx";
 
 export default function CreateRaffle() {
 
     function handleAddNFT() {
+        
         console.log('Add NFT');
     }
 
@@ -33,7 +21,7 @@ export default function CreateRaffle() {
             <div className='grid grid-cols-1 xl:grid-cols-[1fr_2fr] gap-10 justify-center mb-16 max-w-screen-2xl mx-auto'>
                 {/*left*/}
                 <div className='flex flex-col items-center justify-center border border-primary rounded p-8 cursor-pointer max-h-[25rem] text-center' onClick={() => handleAddNFT()}>
-                    <Image src={iconPlus} alt='Choose NFT' className="w-32 xl:w-40" />
+                    <Image src={iconPlus} alt='Choose NFT' className="w-32 xl:w-40"/>
                     <p className='text-white font-block mt-10'>Choose NFT for raffle</p>
                 </div>
                 {/*right*/}

@@ -1,10 +1,8 @@
 'use server';
 
-import { zNftCollectionPartialUpdate } from '@/lib/zodSchemas';
-import { z } from 'zod';
+import { NftCollectionPartialUpdate, zNftCollectionPartialUpdate } from '@/lib/zodSchemas';
 import { authFetch } from './authFetch';
 
-type NftCollectionPartialUpdate = z.infer<typeof zNftCollectionPartialUpdate>;
 
 export async function editNftCollection(id: string, nftCollection: NftCollectionPartialUpdate): Promise<NftCollectionPartialUpdate> {
 	const response = await authFetch(`/nft-collections/${id}`, {

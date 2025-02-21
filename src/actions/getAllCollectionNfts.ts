@@ -1,16 +1,13 @@
 'use server';
 
-import { zNftSummary } from '@/lib/zodSchemas';
-import { z } from 'zod';
 import { unauthFetch } from './unauthFetch';
+import { Nft, zNft } from '@/lib/zodSchemas.ts';
 
-type NftSummary = z.infer<typeof zNftSummary>;
-
-export async function getAllCollectionNfts(chainId: string, address: string): Promise<NftSummary[]> {
+export async function getAllCollectionNfts(chainId: string, address: string): Promise<Nft[]> {
 	const response = await unauthFetch(`/nft-collections/${chainId}/${address}/nfts`);
 	if (!response.ok) {
 		throw new Error(response.statusText);
 	}
 	const nfts = await response.json();
-	return zNftSummary.array().parse(nfts);
+	return zNft.array().parse(nfts);
 }

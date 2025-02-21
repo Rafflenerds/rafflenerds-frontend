@@ -10,12 +10,10 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import SecondaryButton from "@/components/SecondaryButton.tsx";
 import IconCoin from "@/assets/iconCoin.svg";
 import IconDropdown from "@/assets/iconDropdown.svg"
 import {Input} from "@/components/ui/input.tsx";
 import {DefaultPage} from "@/components/DefaultPage.tsx";
-import Image from "next/image";
 import {useState} from "react";
 
 type mode = 'buy' | 'redeem';

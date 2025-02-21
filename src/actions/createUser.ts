@@ -1,11 +1,8 @@
 'use server';
 
-import { zUser, zUserCreate } from '@/lib/zodSchemas';
-import { z } from 'zod';
+import { User, UserCreate, zUser } from '@/lib/zodSchemas';
 import { authFetch } from './authFetch';
 
-type User = z.infer<typeof zUser>;
-type UserCreate = z.infer<typeof zUserCreate>;
 
 export async function createUser(user: UserCreate): Promise<User> {
 	const response = await authFetch('/users', {
