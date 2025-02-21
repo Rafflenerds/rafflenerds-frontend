@@ -3,6 +3,8 @@ import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 
 import type { AuthOptions, NextAuthOptions } from 'next-auth';
 import { getServerSession } from 'next-auth';
 import credentialsProvider from 'next-auth/providers/credentials';
+import { getOwnNfts } from '@/actions/getOwnNfts.ts';
+import { exponentialRetry } from '@/lib/utils.ts';
 
 const nextAuthSecret = process.env.NEXTAUTH_SECRET;
 if (!nextAuthSecret) {
@@ -42,6 +44,12 @@ const providers = [
             const isValid = await verifySignature({ address, message, signature, chainId, projectId });
 
             if (isValid) {
+                exponentialRetry(getOwnNfts, {
+                    maxAttempts: 3,
+                    baseDelay: 1000
+                }).catch((e) => {
+                    console.error("Failed to fetch user Nfts ", e);
+                })
                 return {
                     id: `${chainId}:${address}`,
                 };
