@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const { SetMetadata } = require('./src/metadata.ts');
+const { SetMetadata } = require('./metadata.ts');
 
 // Create the oembed data structure
 const oembedData = {
