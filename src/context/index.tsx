@@ -3,9 +3,11 @@
 import { projectId, wagmiAdapter } from '@/config/wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createAppKit } from '@reown/appkit/react';
-import { arbitrum, avalanche, base, mainnet, optimism, polygon } from '@reown/appkit/networks';
+import { base, mainnet, sepolia } from '@reown/appkit/networks';
 import { type ReactNode } from 'react';
 import { type Config, cookieToInitialState, WagmiProvider } from 'wagmi';
+import { DefaultSIWX } from '@reown/appkit-siwx';
+import { SetMetadata } from '@/metadata.ts';
 
 // Set up queryClient
 const queryClient = new QueryClient();
@@ -14,11 +16,11 @@ if (!projectId) {
     throw new Error('Project ID is not defined');
 }
 
-// Set up metadata
+// todo Set up metadata
 const metadata = {
-    name: 'Rafflenerds',
-    description: 'AppKit Example',
-    url: 'https://reown.com/appkit', // origin must match your domain & subdomain
+    name: SetMetadata.siteName,
+    description: SetMetadata.description,
+    url: SetMetadata.url!, // origin must match your domain & subdomain
     icons: ['https://assets.reown.com/reown-profile-pic.png'],
 };
 
@@ -26,12 +28,13 @@ const metadata = {
 const modal = createAppKit({
     adapters: [wagmiAdapter],
     projectId,
-    networks: [mainnet, arbitrum, avalanche, base, optimism, polygon],
+    networks: [mainnet, base, sepolia],
     defaultNetwork: mainnet,
     metadata: metadata,
     features: {
-        analytics: true, // Optional - defaults to your Cloud configuration
+        analytics: true,
     },
+    siwx: new DefaultSIWX(),
 });
 
 function ContextProvider({ children, cookies }: { children: ReactNode; cookies: string | null }) {

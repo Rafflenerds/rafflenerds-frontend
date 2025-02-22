@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 // todo: update metadata
 export const SetMetadata = {
     title: 'Title',

@@ -32,7 +32,7 @@ export const zEthereumAddress = z.string().regex(/0x[a-fA-F0-9]{40}/, { message:
 
 
 export const zLink = z.object({
-    platform: z.enum(['twitter', 'discord', 'website']),
+    platform: z.enum(['twitter', 'discord', 'website', 'telegram']),
     url: z.string().url(),
 });
 
@@ -102,6 +102,10 @@ export type CreditTransaction = z.infer<typeof zCreditTransaction>;
 /***************************************/
 /************* NFT Schemas *************/
 /***************************************/
+
+export const zNftType = z.enum(['erc721', 'erc1155']);
+
+
 export const zNftCollection = z.object({
     id: z.string().uuid(),
     bannerUrl: z.string().url().optional(),

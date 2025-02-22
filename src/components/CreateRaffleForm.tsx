@@ -1,29 +1,21 @@
 'use client';
-import {Input} from "@/components/ui/input.tsx";
-import {Separator} from "@/components/ui/separator.tsx";
-import PrimaryButton from "@/components/PrimaryButton.tsx";
-import {z} from "zod";
-import { zodResolver } from "@hookform/resolvers/zod"
-import {ControllerRenderProps, FieldValues, useFieldArray, useForm} from "react-hook-form"
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
-import {Button} from "@/components/ui/button.tsx";
-import {cn} from "@/lib/utils.ts";
-import {format} from "date-fns";
-import {CalendarIcon, Trash2} from "lucide-react";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover.tsx";
-import {Calendar} from "@/components/ui/calendar.tsx";
-import {zNftType, zRaffleCreate} from "@/lib/zodSchemas.ts";
-import {useState} from "react";
-import {createRaffle} from "@/actions/createRaffle.ts";
-import catchError from "@/utils/catchError.ts";
-import {useToast} from "@/components/ui/use-toast.ts";
+import { Input } from '@/components/ui/input.tsx';
+import { Separator } from '@/components/ui/separator.tsx';
+import PrimaryButton from '@/components/PrimaryButton.tsx';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ControllerRenderProps, FieldValues, useFieldArray, useForm } from 'react-hook-form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Button } from '@/components/ui/button.tsx';
+import { cn } from '@/lib/utils.ts';
+import { format } from 'date-fns';
+import { CalendarIcon, Trash2 } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover.tsx';
+import { Calendar } from '@/components/ui/calendar.tsx';
+import { zNftType, zRaffleCreate } from '@/lib/zodSchemas.ts';
+import { useState } from 'react';
+import { createRaffle } from '@/actions/createRaffle.ts';
+import { useToast } from '@/components/ui/use-toast.ts';
 
 type RaffleInput = z.infer<typeof zRaffleCreate>;
 export function CreateRaffleForm(){
