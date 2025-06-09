@@ -1,5 +1,4 @@
 'use client';
-
 import { projectId, wagmiAdapter } from '../config/wagmi.ts';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createAppKit } from '@reown/appkit/react';
@@ -7,7 +6,6 @@ import { base, mainnet, sepolia } from '@reown/appkit/networks';
 import { type ReactNode } from 'react';
 import { type Config, cookieToInitialState, WagmiProvider } from 'wagmi';
 import { DefaultSIWX } from '@reown/appkit-siwx';
-import { SetMetadata } from '../metadata.ts';
 
 // Set up queryClient
 const queryClient = new QueryClient();
@@ -17,10 +15,10 @@ if (!projectId) {
 }
 
 // todo Set up metadata
-const metadata = {
-    name: SetMetadata.siteName,
-    description: SetMetadata.description,
-    url: SetMetadata.url!, // origin must match your domain & subdomain
+const AppkitMetadata = {
+    name: '',
+    description: '',
+    url: '', // origin must match your domain & subdomain
     icons: ['https://assets.reown.com/reown-profile-pic.png'],
 };
 
@@ -30,7 +28,7 @@ const modal = createAppKit({
     projectId,
     networks: [mainnet, base, sepolia],
     defaultNetwork: mainnet,
-    metadata: metadata,
+    metadata: AppkitMetadata,
     features: {
         analytics: true,
     },

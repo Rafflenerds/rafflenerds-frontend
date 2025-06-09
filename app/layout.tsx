@@ -46,10 +46,12 @@ export const viewport: Viewport = {
     colorScheme: SetMetadata.colorScheme as ColorSchemeEnum,
 };
 
-export default function RootLayout({ children }: Readonly<{
-    children: React.ReactNode;
-}>) {
-    const cookies = headers().get('cookie');
+export default async function RootLayout(
+    { children }: Readonly<{
+        children: React.ReactNode;
+    }>,
+) {
+    const cookies = (await headers()).get('cookie');
     return (
         <html lang="en" className="">
             <body className={cn(inter.className, "!w-full")}>

@@ -38,6 +38,7 @@ next-env.d.ts
 /.vscode
 /.idea
 
+.env*
 # generated files
 /public/oembed.json
 /public/robots.txt
